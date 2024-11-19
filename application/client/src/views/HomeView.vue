@@ -12,38 +12,7 @@
       <section class="features-section">
         <h2>Core Features</h2>
         <div class="features-grid">
-          <div class="feature-item">
-            <h3>SMART Goals Framework</h3>
-            <p>Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Custom Habit & Task Creation</h3>
-            <p>Define actionable habits and tasks tied to goals without system-generated assumptions.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Reflection Support</h3>
-            <p>Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Adaptive Reminders</h3>
-            <p>Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Accountability Options</h3>
-            <p>Optional features to involve friends, accountability partners, or the broader community.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Failure-Friendly Support</h3>
-            <p>Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Data & Insights</h3>
-            <p>Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.</p>
-          </div>
-          <div class="feature-item">
-            <h3>Resource Storage</h3>
-            <p>Save notes, links, or custom guides relevant to specific goals and habits.</p>
-          </div>
+          <InfoCard v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" />
         </div>
       </section>
 
@@ -57,14 +26,51 @@
 
 <script>
 import BaseView from './BaseView.vue'
+import InfoCard from '@/components/app/general/cards/InfoCard.vue';
 
 export default {
     name: "HomeView",
   components: {
-    BaseView
+    BaseView,
+    InfoCard
   },
   data() {
-    return {}
+    return {
+      features: [
+        {
+          title: 'SMART Goals Framework',
+          description: 'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.'
+        },
+        {
+          title: 'Custom Habit & Task Creation',
+          description: 'Define actionable habits and tasks tied to goals without system-generated assumptions.'
+        },
+        {
+          title: 'Reflection Support',
+          description: 'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.'
+        },
+        {
+          title: 'Adaptive Reminders',
+          description: 'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.'
+        },
+        {
+          title: 'Accountability Options',
+          description: 'Optional features to involve friends, accountability partners, or the broader community.'
+        },
+        {
+          title: 'Failure-Friendly Support',
+          description: 'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.'
+        },
+        {
+          title: 'Data & Insights',
+          description: 'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.'
+        },
+        {
+          title: 'Resource Storage',
+          description: 'Save notes, links, or custom guides relevant to specific goals and habits.'
+        }
+      ]
+    }
   }
 }
 </script>
