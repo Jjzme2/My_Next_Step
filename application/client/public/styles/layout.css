@@ -1,0 +1,93 @@
+.layout-header {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.layout-header.sticky {
+  position: fixed;
+  top: 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo-section {
+  flex: 0 0 auto;
+  padding: 0.5rem 0;
+}
+
+.header-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  margin: 0 2rem;
+}
+
+.header-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 0.5rem;
+  }
+
+  .header-nav {
+    margin: 0 1rem;
+  }
+}
+
+/* Other css that might not be for layout */
+
+.nav-item {
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-item:hover {
+  color: #007bff;
+}
+
+.action-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-button.primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.action-button:hover {
+  background: #f5f5f5;
+}
+
+.action-button.primary:hover {
+  background: #0056b3;
+}
