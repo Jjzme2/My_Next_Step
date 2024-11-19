@@ -12,7 +12,7 @@
       <section class="features-section">
         <h2>Core Features</h2>
         <div class="features-grid">
-          <InfoCard v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" />
+          <InfoCard v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" :image="feature.image" />
         </div>
       </section>
 
@@ -27,6 +27,14 @@
 <script>
 import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue';
+import feature1 from '@/assets/feature1.svg';
+import feature2 from '@/assets/feature2.svg';
+import feature3 from '@/assets/feature3.svg';
+import feature4 from '@/assets/feature4.svg';
+import feature5 from '@/assets/feature5.svg';
+import feature6 from '@/assets/feature6.svg';
+import feature7 from '@/assets/feature7.svg';
+import feature8 from '@/assets/feature8.svg';
 
 export default {
     name: "HomeView",
@@ -39,35 +47,43 @@ export default {
       features: [
         {
           title: 'SMART Goals Framework',
-          description: 'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.'
+          description: 'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.',
+          image: feature1
         },
         {
           title: 'Custom Habit & Task Creation',
-          description: 'Define actionable habits and tasks tied to goals without system-generated assumptions.'
+          description: 'Define actionable habits and tasks tied to goals without system-generated assumptions.',
+          image: feature2
         },
         {
           title: 'Reflection Support',
-          description: 'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.'
+          description: 'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.',
+          image: feature3
         },
         {
           title: 'Adaptive Reminders',
-          description: 'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.'
+          description: 'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.',
+          image: feature4
         },
         {
           title: 'Accountability Options',
-          description: 'Optional features to involve friends, accountability partners, or the broader community.'
+          description: 'Optional features to involve friends, accountability partners, or the broader community.',
+          image: feature5
         },
         {
           title: 'Failure-Friendly Support',
-          description: 'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.'
+          description: 'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.',
+          image: feature6
         },
         {
           title: 'Data & Insights',
-          description: 'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.'
+          description: 'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.',
+          image: feature7
         },
         {
           title: 'Resource Storage',
-          description: 'Save notes, links, or custom guides relevant to specific goals and habits.'
+          description: 'Save notes, links, or custom guides relevant to specific goals and habits.',
+          image: feature8
         }
       ]
     }
