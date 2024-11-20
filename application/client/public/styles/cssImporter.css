@@ -2,7 +2,6 @@
 @import url('./common/animations.css');
 @import url('./common/blog.css');
 @import url('./common/buttons.css');
-@import url('./common/cards.css');
 @import url('./common/carousel.css');
 @import url('./common/common.css');
 @import url('./common/formStyles.css');
@@ -11,5 +10,6 @@
 @import url('./common/variables.css');
 */
 
-
+@import url('./cards.css');
 @import url('./layout.css');
+@import url('./variables.css');

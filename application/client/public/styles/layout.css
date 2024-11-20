@@ -10,6 +10,14 @@
   top: 0;
 }
 
+.main-layout {
+  background-color: var(--primary-color);
+}
+
+p {
+	color: var(--rich-black);
+}
+
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -164,11 +172,27 @@
   background-color: #f9f9f9;
 }
 
-.features-grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid.gap-2 {
   gap: 2rem;
 }
+
+.grid.gap-4 {
+  gap: 4rem;
+}
+
+
 
 .feature-item {
   background: white;

@@ -11,7 +11,7 @@
 
       <section class="features-section">
         <h2>Core Features</h2>
-        <div class="features-grid">
+        <div class="grid grid-4 gap-4">
           <InfoCard v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" :image="feature.image" />
         </div>
       </section>
@@ -40,42 +40,42 @@ export default {
         {
           title: 'SMART Goals Framework',
           description: 'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.',
-          image: require('@/assets/smart-goals.svg')
+          image: 'src/assets/images/svg/smart-goals.svg'
         },
         {
           title: 'Custom Habit & Task Creation',
           description: 'Define actionable habits and tasks tied to goals without system-generated assumptions.',
-          image: require('@/assets/custom-habit.svg')
+          image: 'src/assets/images/svg/custom-habit.svg'
         },
         {
           title: 'Reflection Support',
           description: 'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.',
-          image: require('@/assets/reflection-support.svg')
+          image: 'src/assets/images/svg/reflection-support.svg'
         },
         {
           title: 'Adaptive Reminders',
           description: 'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.',
-          image: require('@/assets/adaptive-reminders.svg')
+          image: 'src/assets/images/svg/adaptive-reminders.svg'
         },
         {
           title: 'Accountability Options',
           description: 'Optional features to involve friends, accountability partners, or the broader community.',
-          image: require('@/assets/accountability-options.svg')
+          image: 'src/assets/images/svg/accountability-options.svg'
         },
         {
           title: 'Failure-Friendly Support',
           description: 'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.',
-          image: require('@/assets/failure-friendly.svg')
+          image: 'src/assets/images/svg/failure-friendly.svg'
         },
         {
           title: 'Data & Insights',
           description: 'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.',
-          image: require('@/assets/data-insights.svg')
+          image: 'src/assets/images/svg/data-insights.svg'
         },
         {
           title: 'Resource Storage',
           description: 'Save notes, links, or custom guides relevant to specific goals and habits.',
-          image: require('@/assets/resource-storage.svg')
+          image: 'src/assets/images/svg/resource-storage.svg'
         }
       ]
     }

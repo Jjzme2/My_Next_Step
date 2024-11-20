@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect x="8" y="8" width="48" height="48" rx="8" ry="8" fill="#41b883"/>
+
+  <!-- Folder Icon -->
+  <path d="M18 22h12l2 4h14a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V26a4 4 0 0 1 4-4z" fill="#fff"/>
+
+  <!-- File within Folder -->
+  <path d="M22 26h20v12H22z" fill="#41b883"/>
+  <path d="M26 30h12" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M26 34h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Storage Elements (Disks/Cloud) -->
+  <circle cx="42" cy="44" r="4" fill="#fff"/>
+  <path d="M40 42h4v4h-4z" fill="#41b883"/>
+  <path d="M32 42a4 4 0 0 1 8 0 4 4 0 0 1-8 0z" fill="#fff"/>
+
+  <!-- Supporting Text -->
+  <text x="32" y="58" font-size="5" font-family="Arial" fill="#fff" text-anchor="middle">RESOURCE STORAGE</text>
+</svg>

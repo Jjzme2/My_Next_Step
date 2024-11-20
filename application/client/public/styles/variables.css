@@ -1,0 +1,24 @@
+:root {
+
+	/*
+		Color Palette
+		Primary Color: Azure - 3B82F6
+		Secondary Color: Dark Pastel Green - 22C55E
+		Tertiary Color: Rich Black - 01161E
+		Quaternary Color: French Gray - BFB6BB
+		Quinary Color: Rosy Brown - C49799
+	*/
+
+	--Azure: #3B82F6;
+	--Dark-Pastel-Green: #22C55E;
+	--Rich-Black: #01161E;
+	--French-Gray: #BFB6BB;
+	--Rosy-Brown: #C49799;
+
+	--primary-color: var(--Azure);
+	--secondary-color: var(--Dark-Pastel-Green);
+	--tertiary-color: var(--Rich-Black);
+	--quaternary-color: var(--French-Gray);
+	--quinary-color: var(--Rosy-Brown);
+
+}

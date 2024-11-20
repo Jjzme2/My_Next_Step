@@ -1,0 +1,7 @@
+# Any .env file found through the project
+*/.env
+.env
+
+# The _dev folder
+_dev/suggestions/
+_dev/notes/personal/
