@@ -7,7 +7,7 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style>
-@import url('../public/styles/cssImporter.css');
+@import url('../public/styles/main.css');
 @import url('../public/styles/navigation.css');
 @import url('../public/styles/buttons.css');
 @import url('../public/styles/summary.css');
