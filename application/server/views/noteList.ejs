@@ -1,0 +1,14 @@
+<h1>My Next Step Wiki! 🧾</h1>
+<p>You can find a collection of useful notes below.</p>
+
+<ul>
+	<% notes.forEach(note => { %>
+		<li>
+			<a href="/notes/<%= note.metadata.id %>">
+				<%= note.metadata.title %>
+			</a>
+		</li>
+	<% }); %>
+</ul>
+
+<a href="/notes/new">Create a new note</a>
