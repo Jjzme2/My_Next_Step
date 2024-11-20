@@ -1,0 +1,10 @@
+.nav-item {
+  color: var(--tertiary-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: var(--secondary-color);
+}

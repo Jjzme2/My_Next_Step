@@ -1,9 +1,9 @@
 <template>
   <div class="info-card">
-    <img v-if="image" v-bind:src="image" alt="Card Image" class="info-card-image" :key="image" />
-    <div class="info-card-content">
-      <h3 class="info-card-title">{{ title }}</h3>
-      <p class="info-card-description">{{ description }}</p>
+    <img v-if="image" v-bind:src="image" alt="Card Image" class="info-card__image" :key="image" />
+    <div class="info-card__content">
+      <h3 class="info-card__title">{{ title }}</h3>
+      <p class="info-card__description">{{ description }}</p>
       <slot></slot>
     </div>
   </div>
