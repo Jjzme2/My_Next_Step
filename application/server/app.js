@@ -17,14 +17,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 // Use routes/pageRoutes.js for pages
-// app.use("/", require("./routes/pageRoutes"));
-// Use routes/apiRoutes.js for API
-// app.use("/api", require("./routes/apiRoutes"));
+const pageRoutes = require("./routes/pageRoutes");
+app.use("/", pageRoutes);
 
-app.get("/", (req, res) => {
-  const name = "John Doe"; // Data to be passed into the template
-  res.render("index", { name }); // Renders the 'index.ejs' template
-});
+// Use routes/apiRoutes.js for API
+const apiRoutes = require("./routes/apiRoutes");
+app.use("/api", apiRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
