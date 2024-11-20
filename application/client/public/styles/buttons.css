@@ -12,12 +12,22 @@
   color: #fff;
 }
 
+.action-button.secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
 .action-button:hover {
   background-color: var(--secondary-color);
   color: #fff;
 }
 
 .action-button.primary:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--quaternary-color);
+  color: #fff;
+}
+
+.action-button.secondary:hover {
+  background-color: var(--quinary-color);
   color: #fff;
 }

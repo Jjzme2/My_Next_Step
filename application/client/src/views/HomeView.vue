@@ -9,16 +9,16 @@
         </div>
       </section>
 
-      <section class="features-section">
-        <h2 class="features-section__title">Core Features</h2>
-        <div class="features-section__grid features-section__grid--4 features-section__grid--gap-4">
-          <InfoCard v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" :image="feature.image" />
+      <section>
+        <h2 class="section-title text-centered">Core Features</h2>
+        <div class="grid grid-4 grid-gap-4 p-xl">
+          <InfoCard class="feature-item" v-for="feature in features" :key="feature.title" :title="feature.title" :description="feature.description" :image="feature.image" />
         </div>
       </section>
 
       <section class="cta-section">
-        <h2 class="cta-section__title">Ready to take the next step?</h2>
-        <button class="cta-section__button cta-section__button--primary">Join Now</button>
+        <h2 class="cta-title">Ready to take the next step?</h2>
+        <button class="cta-button">Join Now</button>
       </section>
     </template>
   </BaseView>
@@ -27,6 +27,7 @@
 <script>
 import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue';
+// import stringUtils from '@/utils/stringUtils';
 
 export default {
     name: "HomeView",

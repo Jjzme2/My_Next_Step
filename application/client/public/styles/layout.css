@@ -18,7 +18,12 @@ p {
   color: var(--tertiary-color);
 }
 
-.header-container {
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.layout-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -54,7 +59,7 @@ p {
 }
 
 @media (max-width: 768px) {
-  .header-container {
+  .layout-container {
     padding: 0 0.5rem;
   }
 

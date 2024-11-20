@@ -1,27 +1,27 @@
 <template>
-  <header class="layout-header">
-    <div class="layout-header__container">
+  <header class="layout-header--sticky">
+    <div class="layout-container">
       <!-- Logo Section -->
-      <div class="layout-header__logo-section">
-        <slot name="logo">
+      <div class="logo-section">
+        <slot name="header-logo">
           <!-- Default logo placeholder -->
           <img
             src="/logo.png"
             alt="Logo"
-            class="layout-header__logo"
+            class="header-logo"
           >
         </slot>
       </div>
 
       <!-- Navigation Section -->
-      <nav class="layout-header__nav">
+      <nav class="header-nav">
         <slot name="navigation">
           <!-- Navigation items will be inserted here -->
         </slot>
       </nav>
 
       <!-- Actions Section -->
-      <div class="layout-header__actions">
+      <div class="header-actions">
         <slot name="actions">
           <!-- Action items (buttons, user menu, etc.) will be inserted here -->
         </slot>

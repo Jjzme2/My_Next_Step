@@ -16,8 +16,8 @@
 
       <!-- Actions slot -->
       <template #actions>
-        <button class="layout-header__action-button">Sign In</button>
-        <button class="layout-header__action-button layout-header__action-button--primary">Get Started</button>
+        <button class="action-button secondary">Sign In</button>
+        <button class="action-button primary">Get Started</button>
       </template>
     </layoutHeader>
 

@@ -1,0 +1,90 @@
+
+/* --------------------------------------------------
+   					GRID
+   --------------------------------------------------
+*/
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid.gap-2 {
+  gap: 2rem;
+}
+
+.grid.gap-4 {
+  gap: 4rem;
+}
+
+
+.grid-item {
+	  background-color: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* --------------------------------------------------
+   					Spacing
+   --------------------------------------------------
+*/
+
+.p-sm {
+  padding: 0.5rem;
+}
+
+.p-md {
+  padding: 1rem;
+}
+
+.p-lg {
+  padding: 2rem;
+}
+
+.p-xl {
+  padding: 4rem;
+}
+
+.m-sm {
+  margin: 0.5rem;
+}
+
+.m-md {
+  margin: 1rem;
+}
+
+.m-lg {
+  margin: 2rem;
+}
+
+.m-xl {
+  margin: 4rem;
+}
+
+/* --------------------------------------------------
+   					Alignment
+   --------------------------------------------------
+*/
+
+.text-centered {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.centered {
+	margin: 0 auto;
+}
