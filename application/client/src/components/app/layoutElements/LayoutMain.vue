@@ -3,29 +3,25 @@
     <layoutHeader :sticky="true">
       <!-- Logo slot -->
       <template #logo>
-        <img src="/logo.png" alt="MyNextStep Logo" class="header-logo">
+        <img src="/logo.png" alt="MyNextStep Logo" class="layout-header__logo">
       </template>
 
       <!-- Navigation slot -->
       <template #navigation>
-        <a href="#" class="nav-item">Home</a>
-        <!-- <a href="#" class="nav-item">Products</a>
-        <a href="#" class="nav-item">Services</a>
-        <a href="#" class="nav-item">About</a> -->
+        <a href="#" class="layout-header__nav-item">Home</a>
+        <!-- <a href="#" class="layout-header__nav-item">Products</a>
+        <a href="#" class="layout-header__nav-item">Services</a>
+        <a href="#" class="layout-header__nav-item">About</a> -->
       </template>
 
       <!-- Actions slot -->
       <template #actions>
-        <button class="action-button">Sign In</button>
-        <button class="action-button primary">Get Started</button>
+        <button class="layout-header__action-button">Sign In</button>
+        <button class="layout-header__action-button layout-header__action-button--primary">Get Started</button>
       </template>
     </layoutHeader>
 
-
-
-
-
-    <main class="body">
+    <main class="main-layout__body">
       <slot></slot>
     </main>
 

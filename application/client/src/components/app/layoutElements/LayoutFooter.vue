@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
-    <div class="footer-section">
-      <div class="grid-container">
+    <div class="footer__section">
+      <div class="footer__grid-container">
         <div
-          class="grid-item"
+          class="footer__grid-item"
           style="padding-left: 0px; padding-top: 0px; padding-bottom: 0px; padding-right: 0px"
         >
         <!-- ! Add back in later -->
@@ -16,11 +16,11 @@
       </div>
     </div>
 
-    <div class="footer-section">
+    <div class="footer__section">
       <strong>&copy; {{ yearTag }} MyNextStep.com. All rights reserved.</strong>
     </div>
 
-    <div class="footer-section footer-brand">
+    <div class="footer__section footer__brand">
       <p aria-label="Company name">ILYTAT</p>
     </div>
   </footer>

@@ -1,6 +1,6 @@
 <template>
   <router-link :to="destination">
-    <button class="button secondary">{{ buttonText }}</button>
+    <button class="button--secondary">{{ buttonText }}</button>
   </router-link>
 </template>
 

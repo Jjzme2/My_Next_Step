@@ -1,24 +1,24 @@
 <template>
-  <mainLayout>
+  <main-layout>
     <template #header v-if="includeHeader"></template>
 
     <template #default>
-      <div>
-        <goBackButton v-if="includeGoHomeButton" :destination="targetDestination" />
+      <div class="base-view__content">
+        <go-back-button v-if="includeGoHomeButton" :destination="targetDestination" />
         <slot></slot>
       </div>
     </template>
 
     <template #footer v-if="includeFooter"></template>
-  </mainLayout>
+  </main-layout>
 
-  <!-- <alertBox
+  <!-- <alert-box
     v-if="alertVisible"
     :message="alertMessage"
     :type="alertType"
     v-model:visible="alertVisible"
     :duration="alertDuration"
-  ></alertBox> -->
+  ></alert-box> -->
 </template>
 
 <script>

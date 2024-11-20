@@ -1,0 +1,25 @@
+.cta-section {
+  padding: 2rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button.primary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.cta-button:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
