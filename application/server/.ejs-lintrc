@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "no-unused-vars": "off",
+    "no-trailing-whitespace": "on",
+	"no-undef": "off",
+	"no-console": "off",
+	"no-constant-condition": "off",
+	"no-unsafe-negation": "off",
+	"no-extra-boolean-cast": "off",
+	"no-implicit-coercion": "off",
+	"no-implicit-globals": "off"
+  }
+}
