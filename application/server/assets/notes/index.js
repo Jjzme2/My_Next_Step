@@ -2,12 +2,20 @@ const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml"); // We will use a YAML parser to handle the metadata
 
-const noteFiles = fs.readdirSync(__dirname).filter((file) => file.endsWith(".md") && file !== "index.js").sort();
+const applicationDir = path.join(__dirname, "application");
+const developerDir = path.join(__dirname, "developer");
 
+const applicationFiles = fs.readdirSync(applicationDir).filter((file) => file.endsWith(".md")).sort();
+const developerFiles = fs.readdirSync(developerDir).filter((file) => file.endsWith(".md")).sort();
+
+const noteFiles = [
+  ...applicationFiles.map((file) => ({ file, folder: "application" })),
+  ...developerFiles.map((file) => ({ file, folder: "developer" }))
+];
 
 // Read the contents of each .md file and extract metadata
-const notes = noteFiles.map((file) => {
-  const filePath = path.join(__dirname, file); // Get the full path to the file
+const notes = noteFiles.map(({ file, folder }) => {
+  const filePath = path.join(__dirname, folder, file); // Get the full path to the file
   const content = fs.readFileSync(filePath, "utf-8"); // Read file content as a string
 
   // Regular expression to match YAML Front Matter (between --- markers)
@@ -25,6 +33,8 @@ const notes = noteFiles.map((file) => {
       console.error("Error parsing YAML metadata:", e);
     }
   }
+
+  metadata.folder = folder; // Add folder name to metadata
 
   return { file, metadata, content: fileContent.trim() }; // Return an object with the file, metadata, and content
 });

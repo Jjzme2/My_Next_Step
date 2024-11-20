@@ -1,14 +1,26 @@
 <h1>My Next Step Wiki! 🧾</h1>
 <p>You can find a collection of useful notes below.</p>
 
-<ul>
-	<% notes.forEach(note => { %>
-		<li>
-			<a href="/notes/<%= note.metadata.id %>">
-				<%= note.metadata.title %>
-			</a>
-		</li>
-	<% }); %>
-</ul>
+<% const groupedNotes = notes.reduce((acc, note) => {
+  const folder = note.metadata.folder;
+  if (!acc[folder]) {
+    acc[folder] = [];
+  }
+  acc[folder].push(note);
+  return acc;
+}, {}); %>
+
+<% Object.keys(groupedNotes).forEach(folder => { %>
+  <h2><%= folder.charAt(0).toUpperCase() + folder.slice(1) %> Notes</h2>
+  <ul>
+    <% groupedNotes[folder].forEach(note => { %>
+      <li>
+        <a href="/notes/<%= note.metadata.id %>">
+          <%= note.metadata.title %>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+<% }); %>
 
 <a href="/notes/new">Create a new note</a>
