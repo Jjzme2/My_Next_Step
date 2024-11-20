@@ -13,14 +13,16 @@ app.use(expressLayouts);
 app.set("layout", "layout"); // Default layout
 
 // Middleware for serving static files (e.g., CSS, JS, images)
+app.use('/assets', express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Routes
-// Use routes/pageRoutes.js for pages
-const pageRoutes = require("./routes/pageRoutes");
-app.use("/", pageRoutes);
 
-// Use routes/apiRoutes.js for API
+const defaultRoutes = require("./routes/defaultRoutes");
+app.use("/", defaultRoutes);
+
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/admin", adminRoutes);
+
 const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
 

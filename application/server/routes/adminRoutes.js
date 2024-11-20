@@ -2,9 +2,23 @@ const express = require("express");
 const router = express.Router();
 
 const NoteCollection = require("../assets/notes/index.js")
-const { renderMarkdown } = require("../utils/markdownRenderer");
+const { renderMarkdown } = require("../utils/markdownRenderer.js");
 
 router.get("/", (req, res) => {
+	  res.render("login", {
+	title: "Wiki Home Page", // Dynamic title for the page
+  });
+});
+
+// !Testing purposes only
+
+router.get("/connect", (req, res) => {
+	const database = require("../_services/databaseService.js");
+	database.connect();
+	res.send("Connected to the database");
+});
+
+router.get("/home", (req, res) => {
   res.render("home", {
     title: "Home Page", // Dynamic title for the page
   });

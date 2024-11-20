@@ -12,3 +12,4 @@ tags: ["dev", "resources"]
 - [Github Workspaces](https://copilot-workspace.githubnext.com/)
 - [ChatGPT](https://chatgpt.com/)
 - [Coolors](https://coolors.co/)
+- [Client Server](http://localhost:5173/)
