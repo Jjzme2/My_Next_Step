@@ -38,7 +38,7 @@ router.get("/notes/:id", (req, res) => {
     return res.status(404).render("404", {
       title: "Page Not Found",
       error: "Note not found",
-      additionalInfo: req.params.id, // Fixed to show the correct missing note ID
+      additionalInfo: req.params.id,
     });
   }
 
