@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 
 const NoteCollection = require("../assets/notes/index.js")
 const { renderMarkdown } = require("../utils/markdownRenderer.js");
@@ -54,6 +56,33 @@ router.get("/notes/:id", (req, res) => {
   res.render("note", {
     title: "Wiki - " + note.metadata.title, // Dynamic title for the page
     content: renderedContent, // Pass content to the template
+  });
+});
+
+router.post("/notes/new", (req, res) => {
+  const { title, content, tags } = req.body;
+
+  if (!title || !content) {
+    return res.status(400).json({ error: 'Title and content are required' });
+  }
+
+  const noteDir = path.join(__dirname, '../assets/notes');
+  const noteFileName = `${title.replace(/\s+/g, '_').toLowerCase()}.md`;
+  const noteFilePath = path.join(noteDir, noteFileName);
+
+  const noteContent = `---
+title: "${title}"
+date: "${new Date().toISOString()}"
+tags: ${JSON.stringify(tags)}
+---
+
+${content}`;
+
+  fs.writeFile(noteFilePath, noteContent, (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to add note' });
+    }
+    res.status(201).json({ message: 'Note added successfully' });
   });
 });
 

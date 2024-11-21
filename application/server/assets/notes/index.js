@@ -40,3 +40,34 @@ const notes = noteFiles.map(({ file, folder }) => {
 });
 
 module.exports = notes; // Export the notes array
+
+// Function to add a new note to the collection
+const addNoteToCollection = (note) => {
+  const noteDir = path.join(__dirname, note.folder);
+  const noteFileName = `${note.title.replace(/\s+/g, '_').toLowerCase()}.md`;
+  const noteFilePath = path.join(noteDir, noteFileName);
+
+  const noteContent = `---
+title: "${note.title}"
+date: "${note.date}"
+tags: ${JSON.stringify(note.tags)}
+---
+
+${note.content}`;
+
+  fs.writeFileSync(noteFilePath, noteContent);
+
+  // Add the new note to the notes array
+  notes.push({
+    file: noteFileName,
+    metadata: {
+      title: note.title,
+      date: note.date,
+      tags: note.tags,
+      folder: note.folder
+    },
+    content: note.content
+  });
+};
+
+module.exports.addNoteToCollection = addNoteToCollection;
