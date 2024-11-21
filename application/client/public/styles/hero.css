@@ -24,6 +24,6 @@
 }
 
 .hero-button.primary {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--secondary-green);
+  color: var(--primary-black);
 }
