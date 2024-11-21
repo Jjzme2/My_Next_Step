@@ -18,6 +18,8 @@ CREATE TABLE jwt_tokens (
     expires_at TIMESTAMP NOT NULL
 );
 
+
+
 -- Function to create a new user
 CREATE OR REPLACE FUNCTION create_user(username VARCHAR, password VARCHAR, email VARCHAR) RETURNS VOID AS $$
 BEGIN

@@ -18,11 +18,18 @@ router.get("/connect", (req, res) => {
 	res.send("Connected to the database");
 });
 
+
+
+// * General
+
 router.get("/home", (req, res) => {
   res.render("home", {
     title: "Home Page", // Dynamic title for the page
   });
 });
+
+
+// * Notes
 
 router.get("/notes", (req, res) => {
 	  res.render("noteList", {
@@ -50,5 +57,16 @@ router.get("/notes/:id", (req, res) => {
   });
 });
 
+
+// * Resources
+
+router.get("/resources", (req, res) => {
+	const resources = require("../assets/storage/resources.js");
+
+	  res.render("resources", {
+	title: "Resources Page", // Dynamic title for the page
+	resources: resources,
+  });
+});
 
 module.exports = router;
