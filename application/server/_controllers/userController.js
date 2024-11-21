@@ -19,6 +19,9 @@ const userController = {
     }
   },
   login: async (req, res) => {
+    if (!req.body) {
+      return res.status(400).json({ error: 'Invalid request' });
+    }
     const { username, password } = req.body;
     try {
       const user = await service.findByUsername(username);
