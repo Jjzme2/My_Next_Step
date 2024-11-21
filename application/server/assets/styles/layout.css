@@ -4,7 +4,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: var(--secondary-gray);
 }
 
 .container {
@@ -14,8 +14,8 @@ body {
 }
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--primary-black);
+  color: var(--primary-blue);
   padding: 10px 0;
 }
 
@@ -37,7 +37,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-  color: #fff;
+  color: var(--primary-blue);
   text-decoration: none;
 }
 
@@ -46,8 +46,8 @@ header nav ul li a:hover {
 }
 
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--primary-black);
+  color: var(--primary-blue);
   text-align: center;
   padding: 10px 0;
   position: fixed;
@@ -56,7 +56,7 @@ footer {
 }
 
 .content {
-  background-color: #3f3e3e;
+  background-color: var(--primary-black);
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 10px;

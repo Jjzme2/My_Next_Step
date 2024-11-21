@@ -1,8 +1,8 @@
 /* Navigation Styles */
 
 nav {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--primary-black);
+  color: var(--primary-blue);
   padding: 10px;
 }
 
@@ -19,12 +19,12 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #fff;
+  color: var(--primary-blue);
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
 }
 
 nav ul li a:hover {
-  background-color: #555;
+  background-color: var(--secondary-green);
 }
