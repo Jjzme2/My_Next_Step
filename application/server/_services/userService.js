@@ -25,6 +25,11 @@ const UserCollection = {
   async getInactive() {
     return baseCollection.getInactive(tableName);
   },
+  async findByUsername(username) {
+    const query = `SELECT * FROM ${tableName} WHERE username = $1`;
+    const result = await baseCollection.query(query, [username]);
+    return result[0];
+  },
 };
 
 module.exports = UserCollection;

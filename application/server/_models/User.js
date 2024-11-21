@@ -1,21 +1,22 @@
 const pool = require("../config/db");
 
 class User {
-  constructor({ id, username, password, email, created_at }) {
-	this.id = id;
+  constructor({ id, username, password, email, created_at, role }) {
+    this.id = id;
     this.username = username;
     this.password = password;
     this.email = email;
     this.created_at = created_at || new Date();
+    this.role = role || 'user';
   }
 
   async save() {
     const query = `
-      INSERT INTO users (id, username, password, email, created_at)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO users (id, username, password, email, created_at, role)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
-    const values = [this.id, this.username, this.password, this.email, this.created_at];
+    const values = [this.id, this.username, this.password, this.email, this.created_at, this.role];
 
     try {
       const res = await pool.query(query, values);

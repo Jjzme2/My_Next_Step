@@ -13,7 +13,16 @@ const verifyToken = (token) => {
   }
 };
 
+const extractRoleFromToken = (token) => {
+  const decodedToken = verifyToken(token);
+  if (decodedToken) {
+    return decodedToken.role;
+  }
+  return null;
+};
+
 module.exports = {
   generateToken,
   verifyToken,
+  extractRoleFromToken,
 };

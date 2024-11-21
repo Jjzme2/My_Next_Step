@@ -2,9 +2,24 @@ const express = require("express");
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const JWTUtil = require('../utils/JWTUtil');
 
 const NoteCollection = require("../assets/notes/index.js")
 const { renderMarkdown } = require("../utils/markdownRenderer.js");
+
+const authenticateAdmin = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const role = JWTUtil.extractRoleFromToken(token);
+  if (role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  next();
+};
 
 router.get("/", (req, res) => {
 	  res.render("pages/login", {
@@ -33,20 +48,20 @@ router.get("/home", (req, res) => {
 
 // * Notes
 
-router.get("/notes", (req, res) => {
+router.get("/notes", authenticateAdmin, (req, res) => {
 	  res.render("notes/list", {
 	title: "Notes Page", // Dynamic title for the page
 	notes: NoteCollection,
   });
 });
 
-router.get("/notes/create", (req, res) => {
+router.get("/notes/create", authenticateAdmin, (req, res) => {
   res.render("notes/create", {
     title: "Create a New Note",
   });
 });
 
-router.get("/notes/:id", (req, res) => {
+router.get("/notes/:id", authenticateAdmin, (req, res) => {
   const note = NoteCollection.find((note) => note.metadata.id === req.params.id);
 
   if (!note) {
@@ -65,7 +80,7 @@ router.get("/notes/:id", (req, res) => {
   });
 });
 
-router.post("/notes/new", (req, res) => {
+router.post("/notes/new", authenticateAdmin, (req, res) => {
   const { title, content, tags } = req.body;
 
   if (!title || !content) {
@@ -95,7 +110,7 @@ ${content}`;
 
 // * Resources
 
-router.get("/resources", (req, res) => {
+router.get("/resources", authenticateAdmin, (req, res) => {
 	const resources = require("../assets/storage/resources.js");
   const packages = require("../assets/storage/packages.js");
 
