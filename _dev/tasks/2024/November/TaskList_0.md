@@ -8,7 +8,7 @@
 
 ### Styling
 
-1. [ ] Add in the CSS for the new website.
+1. [x] Add in the CSS for the new website.
     - **Note:** Currently, the website only includes the `cssImporter` script.
 
 ### New Features

@@ -23,11 +23,11 @@
 }
 
 .action-button.primary:hover {
-  background-color: var(--quaternary-color);
+  background-color: var(--secondary-gray);
   color: #fff;
 }
 
 .action-button.secondary:hover {
-  background-color: var(--quinary-color);
+  background-color: var(--accent-brown);
   color: #fff;
 }

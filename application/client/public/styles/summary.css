@@ -1,7 +1,7 @@
 .summary-section {
   padding: 2rem;
-  background-color: var(--quaternary-color);
-  color: var(--tertiary-color);
+  background-color: var(--secondary-gray);
+  color: var(--primary-black);
 }
 
 .summary-section h1 {

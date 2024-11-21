@@ -1,0 +1,12 @@
+<div class="resource-list">
+	<h2>Resources</h2>
+
+	<!-- Loop the resources array and create an external _blank link for each item -->
+
+	<% resources.forEach(function(resource) { %>
+		<div class="resource">
+			<h3><a href="<%= resource.link %>" target="_blank"><%= resource.title %></a></h3>
+			<!-- <p><%= resource.description %></p> -->
+		</div>
+	<% }); %>
+</div>

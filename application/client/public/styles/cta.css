@@ -15,11 +15,11 @@
 }
 
 .cta-button.primary {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-green);
   color: #fff;
 }
 
 .cta-button:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-green);
   color: #fff;
 }

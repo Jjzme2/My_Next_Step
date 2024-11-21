@@ -1,6 +1,20 @@
 .note-body {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secondary-gray);
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+.note-container {
+  padding: 20px;
+  border: 2px solid var(--primary-black);
+  border-radius: 10px;
+  background-color: var(--secondary-gray);
+  margin-bottom: 20px;
+}
+
+.note-content {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--primary-black);
 }
