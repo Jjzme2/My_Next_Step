@@ -1,11 +1,24 @@
 const database = require("./databaseService");
+const User = require("../_models/User");
 
 const UserCollection = {
   async getAll() {
-	return new Error("Not Implemented Yet");
+    try {
+      const query = "SELECT * FROM users";
+      const users = await database.query(query);
+      return users;
+    } catch (error) {
+      throw new Error("Error fetching users: " + error.message);
+    }
   },
   async create(userData) {
-	return new Error("Not Implemented Yet");
+    try {
+      const newUser = new User(userData);
+      const savedUser = await newUser.save();
+      return savedUser;
+    } catch (error) {
+      throw new Error("Error creating user: " + error.message);
+    }
   },
 };
 
