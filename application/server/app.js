@@ -10,7 +10,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Use express-ejs-layouts
 app.use(expressLayouts);
-app.set("layout", "layout"); // Default layout
+app.set("layout", "general/layout"); // Default layout
 
 // Middleware for serving static files
 app.use("/assets", express.static(path.join(__dirname, "assets")));
