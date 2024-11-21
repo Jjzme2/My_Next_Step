@@ -26,14 +26,14 @@ app.get("/", (req, res) => {
 
 // Admin routes
 const devRoutes = require("./routes/devRoutes");
-app.use("/devCenter", devRoutes);
+app.use("/devcenter", devRoutes);
 
 // API routes
 const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
 
 // Handle unmatched routes for admin or API (optional)
-app.use("/admin/*", (req, res) => {
+app.use("/devcenter/*", (req, res) => {
   res.status(404).send("Admin route not found.");
 });
 app.use("/api/*", (req, res) => {

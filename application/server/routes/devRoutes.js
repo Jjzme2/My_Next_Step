@@ -27,6 +27,20 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/login", (req, res) => {
+	if(!req.body) {
+		return res.status(400).json({ error: 'Invalid request' });
+	}
+
+	const { username, password } = req.body;
+	if (username === "admin" && password === "admin") {
+		const token = JWTUtil.generateToken({ username, role: 'admin' });
+		res.status(200).json({ token });
+	} else {
+		res.status(401).json({ error: 'Invalid credentials' });
+	}
+});
+
 // !Testing purposes only
 
 router.get("/connect", (req, res) => {
