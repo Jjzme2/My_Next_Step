@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Description</th>
                 <th>Link</th>
             </tr>
         </thead>
@@ -12,6 +13,7 @@
             <% resources.forEach(function(resource) { %>
                 <tr>
                     <td><%= resource.title %></td>
+                    <td><%= resource.description %></td>
                     <td><a href="<%= resource.link %>" target="_blank"><%= resource.link %></a></td>
                 </tr>
             <% }); %>
