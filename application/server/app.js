@@ -31,20 +31,20 @@ app.get("/", (req, res) => {
 });
 
 // Middleware to verify JWT token for protected routes
-app.use((req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+// app.use((req, res, next) => {
+//   const token = req.headers.authorization?.split(' ')[1];
+//   if (!token) {
+//     return res.status(401).json({ error: 'Unauthorized' });
+//   }
 
-  const verifiedToken = JWTUtil.verifyToken(token);
-  if (!verifiedToken) {
-    return res.status(403).json({ error: 'Forbidden' });
-  }
+//   const verifiedToken = JWTUtil.verifyToken(token);
+//   if (!verifiedToken) {
+//     return res.status(403).json({ error: 'Forbidden' });
+//   }
 
-  req.user = verifiedToken;
-  next();
-});
+//   req.user = verifiedToken;
+//   next();
+// });
 
 // Admin routes
 const devRoutes = require("./routes/devRoutes");

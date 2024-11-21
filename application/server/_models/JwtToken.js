@@ -1,8 +1,9 @@
 const pool = require("../config/db");
+const stringUtil = require("../utils/stringUtils.js");
 
 class JwtToken {
   constructor({ id, user_id, token, created_at, expires_at }) {
-    this.id = id;
+    this.id = id || stringUtil.generateUUID();
     this.user_id = user_id;
     this.token = token;
     this.created_at = created_at || new Date();
