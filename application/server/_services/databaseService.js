@@ -19,12 +19,14 @@ const database = {
 		}
 	},
 
-	async query(text, params) {
+	async query(text, params, doLog=false) {
 		try {
 			const start = Date.now();
 			const { rows } = await pool.query(text, params);
 			const duration = Date.now() - start;
-			console.log("Executed query", { text, duration, rows });
+			if(doLog) {
+				console.log("Executed query", { text, duration, rows });
+			}
 			return rows;
 		} catch (error) {
 			console.error("Error executing query", error);

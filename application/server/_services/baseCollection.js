@@ -67,6 +67,15 @@ const baseCollection = {
       throw new Error(`Error fetching inactive records from ${tableName}: ${error.message}`);
     }
   },
+
+  async query(query, params) {
+	try {
+	  const result = await databaseService.query(query, params);
+	  return result;
+	} catch (error) {
+	  throw new Error(`Error executing query: ${error.message}`);
+	}
+  },
 };
 
 module.exports = baseCollection;

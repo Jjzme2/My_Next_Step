@@ -1,7 +1,12 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 const secretKey = process.env.JWT_SECRET_KEY;
 
-const generateToken = (payload, expiresIn = '1h') => {
+const generateToken = (payload, expiresIn = "1h") => {
+  if (!secretKey) {
+    throw new Error("JWT secret key is not defined");
+  }
   return jwt.sign(payload, secretKey, { expiresIn });
 };
 

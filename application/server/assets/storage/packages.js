@@ -1,5 +1,5 @@
 const packages = [
-  
+
   // Client
   {
     name: 'Vite',
@@ -76,7 +76,13 @@ const packages = [
     description: 'Markdown parser for Node.js',
     application_part: 'server',
     link: 'https://markdown-it.github.io/',
-  }
+  },
+  {
+	name: 'Bcrypt',
+	description: 'Password hashing library',
+	application_part: 'server',
+	link: 'https://www.npmjs.com/package/bcrypt',
+  },
 ]
 
 module.exports = packages;
