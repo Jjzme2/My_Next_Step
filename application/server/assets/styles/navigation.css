@@ -1,7 +1,7 @@
 /* Navigation Styles */
 
 nav {
-  background-color: var(--primary-black);
+  background-color: var(--primary-color);
   color: var(--primary-blue);
   padding: 10px;
 }
@@ -19,12 +19,12 @@ nav ul li {
 }
 
 nav ul li a {
-  color: var(--primary-blue);
+  color: var(--secondary-color);
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
 }
 
 nav ul li a:hover {
-  background-color: var(--secondary-green);
+  background-color: var(--tertiary-color);
 }

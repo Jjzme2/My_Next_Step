@@ -1,6 +1,6 @@
 .note-body {
   padding: 10px;
-  border: 1px solid var(--secondary-gray);
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   margin-bottom: 10px;
 }
@@ -9,12 +9,12 @@
   padding: 20px;
   border: 2px solid var(--primary-black);
   border-radius: 10px;
-  background-color: var(--secondary-gray);
+  background-color: var(--secondary-color);
   margin-bottom: 20px;
 }
 
 .note-content {
   font-size: 1.2rem;
   line-height: 1.5;
-  color: var(--primary-black);
+  color: var(--tertiary-color);
 }
