@@ -1,29 +1,29 @@
-const database = require("./databaseService");
+const baseCollection = require("../_services/baseCollection");
 const Model = require("../_models/Task");
 
 const tableName = "tasks";
 
 const TaskCollection = {
   async getAll() {
-    try {
-      const collection = await database.list(tableName);
-      return collection;
-    } catch (error) {
-      throw new Error(
-        `Error fetching ${tableName.charAt(0).toUpperCase() + tableName.slice(1)}: ` + error.message
-      );
-    }
+    return baseCollection.getAll(tableName);
   },
   async create(data) {
-    try {
-      const newModel = new Model(data);
-      const savedModel = await newModel.save();
-      return savedModel;
-    } catch (error) {
-      throw new Error(
-        `Error creating ${tableName.charAt(0).toUpperCase() + tableName.slice(1)}: ` + error.message
-      );
-    }
+    return baseCollection.create(tableName, Model, data);
+  },
+  async update(id, data) {
+    return baseCollection.update(tableName, id, data);
+  },
+  async delete(id) {
+    return baseCollection.delete(tableName, id);
+  },
+  async readById(id) {
+    return baseCollection.readById(tableName, id);
+  },
+  async getActive() {
+    return baseCollection.getActive(tableName);
+  },
+  async getInactive() {
+    return baseCollection.getInactive(tableName);
   },
 };
 
