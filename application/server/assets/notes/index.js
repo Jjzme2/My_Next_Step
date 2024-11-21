@@ -3,14 +3,14 @@ const path = require("path");
 const yaml = require("js-yaml"); // We will use a YAML parser to handle the metadata
 
 const applicationDir = path.join(__dirname, "application");
-const developerDir = path.join(__dirname, "developer");
+// const developerDir = path.join(__dirname, "developer");
 
 const applicationFiles = fs.readdirSync(applicationDir).filter((file) => file.endsWith(".md")).sort();
-const developerFiles = fs.readdirSync(developerDir).filter((file) => file.endsWith(".md")).sort();
+// const developerFiles = fs.readdirSync(developerDir).filter((file) => file.endsWith(".md")).sort();
 
 const noteFiles = [
   ...applicationFiles.map((file) => ({ file, folder: "application" })),
-  ...developerFiles.map((file) => ({ file, folder: "developer" }))
+//   ...developerFiles.map((file) => ({ file, folder: "developer" }))
 ];
 
 // Read the contents of each .md file and extract metadata
