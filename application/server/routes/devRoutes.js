@@ -59,6 +59,12 @@ router.get("/notes/:id", (req, res) => {
   });
 });
 
+router.get("/notes/create", (req, res) => {
+  res.render("newNote", {
+    title: "Create a New Note",
+  });
+});
+
 router.post("/notes/new", (req, res) => {
   const { title, content, tags } = req.body;
 
