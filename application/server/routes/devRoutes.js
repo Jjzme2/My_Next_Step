@@ -62,10 +62,12 @@ router.get("/notes/:id", (req, res) => {
 
 router.get("/resources", (req, res) => {
 	const resources = require("../assets/storage/resources.js");
+  const packages = require("../assets/storage/packages.js");
 
 	  res.render("resources", {
 	title: "Resources Page", // Dynamic title for the page
 	resources: resources,
+  packages: packages,
   });
 });
 

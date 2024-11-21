@@ -1,12 +1,56 @@
 <div class="resource-list">
-	<h2>Resources</h2>
+    <h2>General Resources</h2>
 
-	<!-- Loop the resources array and create an external _blank link for each item -->
+    <table class="resource-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% resources.forEach(function(resource) { %>
+                <tr>
+                    <td><%= resource.title %></td>
+                    <td><a href="<%= resource.link %>" target="_blank"><%= resource.link %></a></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 
-	<% resources.forEach(function(resource) { %>
-		<div class="resource">
-			<h3><a href="<%= resource.link %>" target="_blank"><%= resource.title %></a></h3>
-			<!-- <p><%= resource.description %></p> -->
-		</div>
-	<% }); %>
+    <h2>Installed Packages</h2>
+
+    <!-- Group packages by application_part -->
+    <% const categorizedPackages = packages.reduce((categories, pkg) => {
+        const part = pkg.application_part || 'Other';
+        if (!categories[part]) {
+            categories[part] = [];
+        }
+        categories[part].push(pkg);
+        return categories;
+    }, {}); %>
+
+    <% Object.keys(categorizedPackages).forEach(function(part) { %>
+        <div class="package-category">
+            <h3><%= part.charAt(0).toUpperCase() + part.slice(1) %></h3>
+            <table class="package-table">
+                <thead>
+                    <tr>
+                        <th>Package Name</th>
+                        <th>Description</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categorizedPackages[part].forEach(function(pkg) { %>
+                        <tr>
+                            <td><%= pkg.name %></td>
+                            <td><%= pkg.description %></td>
+                            <td><a href="<%= pkg.link %>" target="_blank">View</a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% }); %>
 </div>
