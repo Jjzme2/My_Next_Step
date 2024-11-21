@@ -1,7 +1,8 @@
 const pool = require("../config/db");
 
 const Task = {
-	constructor({ title, description, created_at }) {
+	constructor({ id, title, description, created_at }) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.created_at = created_at || new Date();
@@ -9,11 +10,11 @@ const Task = {
 
 	async save() {
 		const query = `
-			INSERT INTO tasks (title, description, created_at)
-			VALUES ($1, $2, $3)
+			INSERT INTO tasks (id, title, description, created_at)
+			VALUES ($1, $2, $3, $4)
 			RETURNING *;
 		`;
-		const values = [this.title, this.description, this.created_at];
+		const values = [this.id, this.title, this.description, this.created_at];
 
 		try {
 			const res = await pool.query(query, values);
