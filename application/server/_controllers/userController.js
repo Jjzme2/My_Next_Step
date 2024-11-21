@@ -1,5 +1,6 @@
 const service = require('../_services/userService');
 const JWTUtil = require('../utils/JWTUtil');
+const jwtTokenService = require('../_services/jwtTokenService');
 
 const userController = {
   getAll: async (req, res) => {
@@ -25,8 +26,17 @@ const userController = {
       if (!user || user.password !== password) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-	  console.log("User found. Generating token...");
+      console.log("User found. Generating token...");
       const token = JWTUtil.generateToken({ id: user.id, role: user.role });
+      
+      // Save the token in the jwt_tokens table
+      const jwtTokenData = {
+        user_id: user.id,
+        token: token,
+        expires_at: new Date(Date.now() + 3600000) // 1 hour from now
+      };
+      await jwtTokenService.create(jwtTokenData);
+
       res.status(200).json({ token });
     } catch (error) {
       res.status(500).json({ error: error.message });

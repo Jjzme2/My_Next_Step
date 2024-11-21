@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
+const JWTUtil = require("./utils/JWTUtil");
 
 const app = express();
 
@@ -27,6 +28,22 @@ app.use("/", express.static(path.join(__dirname, "../client/dist")));
 // Serve index.html for any unmatched root-level routes (SPA fallback)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
+// Middleware to verify JWT token for protected routes
+app.use((req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const verifiedToken = JWTUtil.verifyToken(token);
+  if (!verifiedToken) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  req.user = verifiedToken;
+  next();
 });
 
 // Admin routes
