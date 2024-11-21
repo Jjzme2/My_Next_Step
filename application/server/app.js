@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
 });
 
 // Admin routes
-const adminRoutes = require("./routes/adminRoutes");
-app.use("/admin", adminRoutes);
+const devRoutes = require("./routes/devRoutes");
+app.use("/devCenter", devRoutes);
 
 // API routes
 const apiRoutes = require("./routes/apiRoutes");
