@@ -10,5 +10,6 @@ router.post('/tasks', taskController.createTask);
 router.post('/notes', noteController.addNote);
 router.get('/users', userController.getAll);
 router.post('/users', userController.create);
+router.post('/login', userController.login);
 
 module.exports = router;

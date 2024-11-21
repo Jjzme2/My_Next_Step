@@ -25,6 +25,7 @@ const userController = {
       if (!user || user.password !== password) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
+	  console.log("User found. Generating token...");
       const token = JWTUtil.generateToken({ id: user.id, role: user.role });
       res.status(200).json({ token });
     } catch (error) {

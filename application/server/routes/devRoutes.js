@@ -6,6 +6,7 @@ const JWTUtil = require('../utils/JWTUtil');
 
 const NoteCollection = require("../assets/notes/index.js")
 const { renderMarkdown } = require("../utils/markdownRenderer.js");
+// const userController = require( "../_controllers/userController.js" );
 
 const authenticateAdmin = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
@@ -27,27 +28,13 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/login", (req, res) => {
-	if(!req.body) {
-		return res.status(400).json({ error: 'Invalid request' });
-	}
+// router.post("/login", (req, res) => {
+// 	if(!req.body) {
+// 		return res.status(400).json({ error: 'Invalid request, No `Req.body` found!' });
+// 	}
 
-	const { username, password } = req.body;
-	if (username === "admin" && password === "admin") {
-		const token = JWTUtil.generateToken({ username, role: 'admin' });
-		res.status(200).json({ token });
-	} else {
-		res.status(401).json({ error: 'Invalid credentials' });
-	}
-});
-
-// !Testing purposes only
-
-router.get("/connect", (req, res) => {
-	const database = require("../_services/databaseService.js");
-	database.connect();
-	res.send("Connected to the database");
-});
+// 	userController.login(req, res);
+// });
 
 
 
