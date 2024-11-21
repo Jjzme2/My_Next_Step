@@ -30,6 +30,9 @@ const UserCollection = {
     const result = await baseCollection.query(query, [username]);
     return result[0];
   },
+  async findByToken(token) {
+    return Model.findByToken(token);
+  },
 };
 
 module.exports = UserCollection;

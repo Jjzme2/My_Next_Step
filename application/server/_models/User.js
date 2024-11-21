@@ -25,6 +25,22 @@ class User {
       throw new Error("Error saving user: " + error.message);
     }
   }
+
+  static async findByToken(token) {
+    const query = `
+      SELECT users.* FROM users
+      JOIN jwt_tokens ON users.id = jwt_tokens.user_id
+      WHERE jwt_tokens.token = $1;
+    `;
+    const values = [token];
+
+    try {
+      const res = await pool.query(query, values);
+      return res.rows[0];
+    } catch (error) {
+      throw new Error("Error finding user by token: " + error.message);
+    }
+  }
 }
 
 module.exports = User;
