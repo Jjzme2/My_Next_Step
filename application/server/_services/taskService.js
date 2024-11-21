@@ -1,9 +1,9 @@
 const database = require("./databaseService");
-const User = require("../_models/User");
+const Model = require("../_models/Task");
 
-const tableName = "users";
+const tableName = "tasks";
 
-const UserCollection = {
+const TaskCollection = {
   async getAll() {
     try {
       const collection = await database.list(tableName);
@@ -27,4 +27,4 @@ const UserCollection = {
   },
 };
 
-module.exports = UserCollection;
+module.exports = TaskCollection;
