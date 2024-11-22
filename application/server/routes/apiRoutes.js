@@ -11,7 +11,6 @@ router.post('/tasks', taskController.createTask);
 router.post('/notes', noteController.addNote);
 router.get('/users', userController.getAll);
 router.post('/users', userController.create);
-router.post('/login', userController.login);
 
 router.get('/jwt-tokens', jwtTokenController.getAllTokens);
 router.post('/jwt-tokens', jwtTokenController.createToken);
@@ -20,8 +19,3 @@ router.delete('/jwt-tokens/:id', jwtTokenController.deleteToken);
 router.get('/jwt-tokens/:id', jwtTokenController.getTokenById);
 
 router.get('/user-info', userController.getUserInfo);
-
-// Route for user registration
-router.post('/register', userController.create);
-
-module.exports = router;

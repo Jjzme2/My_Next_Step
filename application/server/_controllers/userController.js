@@ -21,31 +21,6 @@ const userController = {
       res.status(500).json({ error: error.message });
     }
   },
-  login: async (req, res) => {
-	console.log("Attempting to login with credentials: ", req.body);
-    const { username, password } = req.body;
-    try {
-      const user = await service.findByUsername(username);
-	  console.log("User found: ", user);
-      if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(401).json({ error: 'Invalid credentials' });
-      }
-      console.log("User found. Generating token...");
-      const token = JWTUtil.generateToken({ id: user.id, role: user.role });
-
-      // Save the token in the jwt_tokens table
-      const jwtTokenData = {
-        user_id: user.id,
-        token: token,
-        expires_at: new Date(Date.now() + 3600000) // 1 hour from now
-      };
-      await jwtTokenService.create(jwtTokenData);
-
-      res.status(200).json({ token, role: user.role });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
   getUserInfo: async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {

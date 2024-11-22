@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 
+const publicRoutes = ['login', 'register'];
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -26,7 +28,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem('authToken');
-  if (to.name !== 'login' && to.name !== 'register' && !isAuthenticated) {
+  if (!publicRoutes.includes(to.name) && !isAuthenticated) {
     next({ name: 'login' });
   } else {
     next();

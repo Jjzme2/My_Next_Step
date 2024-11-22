@@ -48,8 +48,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware to check for authentication on all routes
+// Middleware to check for authentication only on routes that are not in the `publicRoutes` array
+const publicRoutes = ['/login', '/register'];
 app.use((req, res, next) => {
+  if (publicRoutes.includes(req.path)) {
+    return next();
+  }
+
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
     return res.redirect('/login');
