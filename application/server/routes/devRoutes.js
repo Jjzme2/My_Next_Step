@@ -11,13 +11,17 @@ const { renderMarkdown } = require("../utils/markdownRenderer.js");
 const authenticateAdmin = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Unauthorized', message: 'Token not found' });
   }
 
   const role = JWTUtil.extractRoleFromToken(token);
   if (role !== 'admin') {
     return res.status(403).json({ error: 'Forbidden' });
   }
+const decodedToken = JWTUtil.verifyToken(token);
+if (!decodedToken) {
+	return res.status(401).json({ error: 'Unauthorized', message: 'Invalid token' });
+}
 
   next();
 };

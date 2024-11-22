@@ -28,7 +28,7 @@ const userController = {
       }
       console.log("User found. Generating token...");
       const token = JWTUtil.generateToken({ id: user.id, role: user.role });
-      
+
       // Save the token in the jwt_tokens table
       const jwtTokenData = {
         user_id: user.id,
@@ -37,7 +37,15 @@ const userController = {
       };
       await jwtTokenService.create(jwtTokenData);
 
-      res.status(200).json({ token });
+    //   res.status(200).json({ token });
+	res.cookie("token", token, {
+	httpOnly: true,
+	secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+	maxAge: 3600000, // 1 hour
+	});
+	res.redirect("/devcenter/home");
+	// res.setHeader("Authorization", `Bearer ${token}`);
+	// res.redirect('/devcenter/home');
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
