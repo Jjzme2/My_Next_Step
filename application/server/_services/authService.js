@@ -14,7 +14,6 @@ const authService = {
 
 		if(!(await bcrypt.compare(password, user.password))){
 			console.log('Password does not match');
-			console.log(password == user.password);
 			console.table({password, userPassword: user.password});
 		}
 
@@ -33,7 +32,11 @@ const authService = {
     const newUser = new User({ username, password: hashedPassword, email });
     await newUser.save();
     return newUser;
-  }
+  },
+  getUserInfo: async (token) => {
+	const user = await User.findByToken(token);
+	return user;
+  },
 };
 
 module.exports = authService;

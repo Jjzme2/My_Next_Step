@@ -7,6 +7,11 @@ const JwtTokenService = {
   async getAll() {
     return baseCollection.getAll(tableName);
   },
+  async readByToken(token) {
+	const query = `SELECT * FROM ${tableName} WHERE token = $1`;
+	const result = await baseCollection.query(query, [token]);
+	return result[0];
+  },
   async create(data) {
     return baseCollection.create(tableName, JwtToken, data);
   },
@@ -24,7 +29,7 @@ const JwtTokenService = {
     return baseCollection.update(tableName, id, data);
   },
   async isTokenRevoked(token) {
-    const tokenRecord = await this.readById(token);
+    const tokenRecord = await this.readByToken(token);
     return tokenRecord && tokenRecord.revoked;
   }
 };

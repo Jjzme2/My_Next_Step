@@ -7,7 +7,7 @@ class JwtToken {
     this.user_id = user_id;
     this.token = token;
     this.created_at = created_at || new Date();
-    this.expires_at = expires_at;
+    this.expires_at = expires_at || new Date();
     this.revoked = revoked || false;
   }
 

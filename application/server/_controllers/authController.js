@@ -1,13 +1,16 @@
 const authService = require('../_services/authService');
 const jwtTokenService = require('../_services/jwtTokenService');
 const JWTUtil = require('../utils/JWTUtil');
+// Add Role Service so we can get the role by name instead of ID.
 
 const authController = {
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
       const token = await authService.login(username, password);
-      await jwtTokenService.create({ user_id: user.id, token });
+	  const user = await authService.getUserInfo(token);
+		// ! This is important to the issue.
+    //   await jwtTokenService.create({ user_id: user.id, token });
       res.status(200).json({ token, username });
     } catch (error) {
       res.status(401).json({ error: error.message });
