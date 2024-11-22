@@ -5,11 +5,8 @@
       <div class="logo-section">
         <slot name="header-logo">
           <!-- Default logo placeholder -->
-          <img
-            src="/logo.png"
-            alt="Logo"
-            class="header-logo"
-          >
+          <img src="/logo.png" alt="Logo" class="header-logo" />
+          <div v-if="devMode" class="dev-mode-indicator">Dev Mode ✅</div>
         </slot>
       </div>
 
@@ -36,12 +33,17 @@ export default {
   props: {
     height: {
       type: String,
-      default: '64px'
+      default: '64px',
     },
     sticky: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
+  computed: {
+    devMode() {
+      return import.meta.env.MODE === 'development'
+    },
+  },
 }
 </script>

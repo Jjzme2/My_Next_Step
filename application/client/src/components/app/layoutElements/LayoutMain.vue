@@ -3,15 +3,18 @@
     <layoutHeader :sticky="true">
       <!-- Logo slot -->
       <template #logo>
-        <img src="/logo.png" alt="MyNextStep Logo" class="layout-header__logo">
+        <img src="/logo.png" alt="MyNextStep Logo" class="layout-header__logo" />
       </template>
 
       <!-- Navigation slot -->
       <template #navigation>
-        <a href="#" class="layout-header__nav-item">Home</a>
-        <!-- <a href="#" class="layout-header__nav-item">Products</a>
-        <a href="#" class="layout-header__nav-item">Services</a>
-        <a href="#" class="layout-header__nav-item">About</a> -->
+        <a v-if="env == 'development'" href="/devcenter/" class="layout-header nav-item"
+          >DevCenter</a
+        >
+        <a href="#" class="layout-header nav-item">Home</a>
+        <!-- <a href="#" class="layout-header nav-item">Products</a>
+        <a href="#" class="layout-header nav-item">Services</a>
+        <a href="#" class="layout-header nav-item">About</a> -->
       </template>
 
       <!-- Actions slot -->
@@ -38,16 +41,16 @@ import { useRouter } from 'vue-router'
 import layoutHeader from '@/components/app/layoutElements/LayoutHeader.vue'
 import layoutFooter from '@/components/app/layoutElements/LayoutFooter.vue'
 
-
 export default {
   name: 'LayoutMain',
   components: {
     layoutHeader,
-    layoutFooter
+    layoutFooter,
   },
   setup() {
     const router = useRouter()
     const showHeader = ref(false)
+    const env = import.meta.env.MODE
 
     const handleScroll = () => {
       showHeader.value = window.scrollY > 100
@@ -70,10 +73,11 @@ export default {
     }
 
     return {
+      env,
       showHeader,
       navigateToLogin,
-      navigateToRegister
+      navigateToRegister,
     }
-  }
+  },
 }
 </script>

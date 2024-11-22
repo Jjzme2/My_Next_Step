@@ -3,5 +3,5 @@ function NotImplementedYetError(req, res) {
 }
 
 module.exports = {
-	  NotImplementedYetError,
+  NotImplementedYetError,
 };

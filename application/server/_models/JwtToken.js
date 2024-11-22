@@ -17,7 +17,14 @@ class JwtToken {
       VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
-    const values = [this.id, this.user_id, this.token, this.created_at, this.expires_at, this.revoked];
+    const values = [
+      this.id,
+      this.user_id,
+      this.token,
+      this.created_at,
+      this.expires_at,
+      this.revoked,
+    ];
 
     try {
       const res = await pool.query(query, values);
@@ -57,7 +64,14 @@ class JwtToken {
       WHERE id = $6
       RETURNING *;
     `;
-    const values = [this.user_id, this.token, this.created_at, this.expires_at, this.revoked, this.id];
+    const values = [
+      this.user_id,
+      this.token,
+      this.created_at,
+      this.expires_at,
+      this.revoked,
+      this.id,
+    ];
 
     try {
       const res = await pool.query(query, values);

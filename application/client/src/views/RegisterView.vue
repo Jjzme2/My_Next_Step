@@ -4,15 +4,15 @@
     <form @submit.prevent="handleRegister">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="username" required>
+        <input type="text" id="username" v-model="username" required />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" v-model="email" required>
+        <input type="email" id="email" v-model="email" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" required>
+        <input type="password" id="password" v-model="password" required />
       </div>
       <button type="submit">Register</button>
       <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
@@ -27,7 +27,7 @@ export default {
       username: '',
       email: '',
       password: '',
-      errorMessage: ''
+      errorMessage: '',
     }
   },
   methods: {
@@ -36,27 +36,27 @@ export default {
         const response = await fetch('/auth/register', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             username: this.username,
             email: this.email,
-            password: this.password
-          })
-        });
+            password: this.password,
+          }),
+        })
 
         if (!response.ok) {
-          throw new Error('Registration failed');
+          throw new Error('Registration failed')
         }
 
-        const data = await response.json();
-        localStorage.setItem('authToken', data.token);
-        this.$router.push('/');
+        const data = await response.json()
+        localStorage.setItem('authToken', data.token)
+        this.$router.push('/')
       } catch (error) {
-        this.errorMessage = error.message;
+        this.errorMessage = error.message
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -88,7 +88,7 @@ export default {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;

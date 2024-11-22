@@ -1,12 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const Note = require('../_models/Note');
+const fs = require("fs");
+const path = require("path");
+const Note = require("../_models/Note");
 
 exports.addNote = async (req, res) => {
   const { title, content, tags } = req.body;
 
   if (!title || !content) {
-    return res.status(400).json({ error: 'Title and content are required' });
+    return res.status(400).json({ error: "Title and content are required" });
   }
 
   try {
@@ -14,13 +14,13 @@ exports.addNote = async (req, res) => {
       title,
       content,
       tags,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
     });
 
     await note.save();
 
-    res.status(201).json({ message: 'Note added successfully' });
+    res.status(201).json({ message: "Note added successfully" });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add note' });
+    res.status(500).json({ error: "Failed to add note" });
   }
 };

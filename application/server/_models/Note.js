@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 class Note {
   constructor({ title, content, tags, date }) {
@@ -10,8 +10,8 @@ class Note {
   }
 
   async save() {
-    const noteDir = path.join(__dirname, '../assets/notes');
-    const noteFileName = `${this.title.replace(/\s+/g, '_').toLowerCase()}.md`;
+    const noteDir = path.join(__dirname, "../assets/notes");
+    const noteFileName = `${this.title.replace(/\s+/g, "_").toLowerCase()}.md`;
     const noteFilePath = path.join(noteDir, noteFileName);
 
     const noteContent = `---

@@ -4,11 +4,11 @@
     <form @submit.prevent="handleLogin">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="username" required>
+        <input type="text" id="username" v-model="username" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" required>
+        <input type="password" id="password" v-model="password" required />
       </div>
       <button type="submit">Login</button>
 
@@ -26,7 +26,7 @@ export default {
     return {
       username: '',
       password: '',
-      errorMessage: ''
+      errorMessage: '',
     }
   },
   methods: {
@@ -35,28 +35,27 @@ export default {
         const response = await fetch('/auth/login', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             username: this.username,
-            password: this.password
-          })
-        });
-
+            password: this.password,
+          }),
+        })
 
         if (!response.ok) {
-          throw new Error('Invalid login credentials');
+          throw new Error('Invalid login credentials')
         }
 
-        const data = await response.json();
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('username', data.username);
-        this.$router.push('/');
+        const data = await response.json()
+        localStorage.setItem('authToken', data.token)
+        localStorage.setItem('username', data.username)
+        this.$router.push('/')
       } catch (error) {
-        this.errorMessage = error.message;
+        this.errorMessage = error.message
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -88,7 +87,7 @@ export default {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;

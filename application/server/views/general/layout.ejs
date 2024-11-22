@@ -10,6 +10,8 @@
     <header>
         <div class="container">
             <h1>ILYTAT - My Next Step DevCenter</h1>
+			<% user || 'No User available' %>
+			<sub>Welcome <%- user.username %></sub>
             <nav>
                 <ul>
                     <li><a href="/devcenter/home">Home</a></li>

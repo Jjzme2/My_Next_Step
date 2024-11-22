@@ -2,8 +2,6 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-import LoginView from './views/LoginView.vue'
-import RegisterView from './views/RegisterView.vue'
 
 const app = createApp(App)
 
@@ -25,7 +23,4 @@ router.onError((error, to, from) => {
 })
 
 // Use Pinia, Vue Router, and Highlight.js Vue Plugin
-app
-.use(createPinia())
-.use(router)
-.mount('#app')
+app.use(createPinia()).use(router).mount('#app')

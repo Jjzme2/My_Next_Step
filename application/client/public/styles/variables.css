@@ -1,6 +1,5 @@
 :root {
-
-	/*
+  /*
 		Color Palette
 		Primary Color: Azure - 3B82F6
 		Secondary Color: Dark Pastel Green - 22C55E
@@ -9,16 +8,15 @@
 		Quinary Color: Rosy Brown - C49799
 	*/
 
-	--primary-blue: #1E90FF; /* P6d78 */
-	--secondary-green: #32CD32; /* Pab23 */
-	--primary-black: #000000; /* P316e */
-	--secondary-gray: #D3D3D3; /* Pd92f */
-	--accent-brown: #A52A2A; /* Pe4d5 */
+  --primary-blue: #1e90ff; /* P6d78 */
+  --secondary-green: #32cd32; /* Pab23 */
+  --primary-black: #000000; /* P316e */
+  --secondary-gray: #d3d3d3; /* Pd92f */
+  --accent-brown: #a52a2a; /* Pe4d5 */
 
-	--primary-color: var(--primary-blue);
-	--secondary-color: var(--secondary-green);
-	--tertiary-color: var(--primary-black);
-	--quaternary-color: var(--secondary-gray);
-	--quinary-color: var(--accent-brown);
-
+  --primary-color: var(--primary-blue);
+  --secondary-color: var(--secondary-green);
+  --tertiary-color: var(--primary-black);
+  --quaternary-color: var(--secondary-gray);
+  --quinary-color: var(--accent-brown);
 }

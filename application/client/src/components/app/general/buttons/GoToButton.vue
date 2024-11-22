@@ -10,21 +10,21 @@ export default {
   props: {
     destination: {
       type: String,
-      default: '/'
+      default: '/',
     },
     buttonText: {
       type: String,
-      default: 'Go Back'
+      default: 'Go Back',
     },
     isAuthenticated: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     // from() {
     // 	return this.$route.path;
     // },
-  }
+  },
 }
 </script>

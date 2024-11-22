@@ -32,14 +32,16 @@ app.get("/", (req, res) => {
 
 // Middleware to verify JWT token for protected routes
 app.use((req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.headers.authorization?.split(" ")[1];
   if (!token && req.route?.meta?.requiresAuth) {
-    return res.status(401).json({ error: 'Unauthorized', message: 'Token not found' });
+    return res
+      .status(401)
+      .json({ error: "Unauthorized", message: "Token not found" });
   }
 
   const verifiedToken = JWTUtil.verifyToken(token);
   if (!verifiedToken) {
-    return res.status(403).json({ error: 'Forbidden' });
+    return res.status(403).json({ error: "Forbidden" });
   }
 
   req.user = verifiedToken;
@@ -52,14 +54,14 @@ app.use((req, res, next) => {
     return next();
   }
 
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
-    return res.redirect('/login');
+    return res.redirect("/login");
   }
 
   const verifiedToken = JWTUtil.verifyToken(token);
   if (!verifiedToken) {
-    return res.redirect('/login');
+    return res.redirect("/login");
   }
 
   req.user = verifiedToken;
@@ -93,4 +95,6 @@ app.use("/api/*", (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`),
+);

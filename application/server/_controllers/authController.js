@@ -1,6 +1,6 @@
-const authService = require('../_services/authService');
-const jwtTokenService = require('../_services/jwtTokenService');
-const JWTUtil = require('../utils/JWTUtil');
+const authService = require("../_services/authService");
+const jwtTokenService = require("../_services/jwtTokenService");
+const JWTUtil = require("../utils/JWTUtil");
 // Add Role Service so we can get the role by name instead of ID.
 
 const authController = {
@@ -8,9 +8,9 @@ const authController = {
     try {
       const { username, password } = req.body;
       const token = await authService.login(username, password);
-	  const user = await authService.getUserInfo(token);
-		// ! This is important to the issue.
-    //   await jwtTokenService.create({ user_id: user.id, token });
+      const user = await authService.getUserInfo(token);
+      // ! This is important to the issue.
+      //   await jwtTokenService.create({ user_id: user.id, token });
       res.status(200).json({ token, username });
     } catch (error) {
       res.status(401).json({ error: error.message });
@@ -21,7 +21,7 @@ const authController = {
       const { token } = req.body;
       await authService.logout(token);
       await jwtTokenService.revoke(token);
-      res.status(200).json({ message: 'Logged out successfully' });
+      res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -36,27 +36,29 @@ const authController = {
     }
   },
   getUserInfo: async (req, res) => {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization?.split(" ")[1];
     if (!token) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: "Unauthorized" });
     }
 
     try {
       const verifiedToken = await JWTUtil.verifyToken(token);
       if (!verifiedToken) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        return res.status(401).json({ error: "Unauthorized" });
       }
 
       const user = await authService.getUserInfo(token);
       if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: "User not found" });
       }
 
-      res.status(200).json({ id: user.id, username: user.username, role: user.role });
+      res
+        .status(200)
+        .json({ id: user.id, username: user.username, role: user.role });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
+  },
 };
 
 module.exports = authController;

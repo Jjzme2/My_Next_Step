@@ -1,4 +1,4 @@
-const databaseService = require('./databaseService');
+const databaseService = require("./databaseService");
 
 const baseCollection = {
   async getAll(tableName) {
@@ -44,7 +44,9 @@ const baseCollection = {
       const result = await databaseService.query(query, [id]);
       return result[0];
     } catch (error) {
-      throw new Error(`Error reading from ${tableName} by id: ${error.message}`);
+      throw new Error(
+        `Error reading from ${tableName} by id: ${error.message}`,
+      );
     }
   },
 
@@ -54,7 +56,9 @@ const baseCollection = {
       const result = await databaseService.query(query);
       return result;
     } catch (error) {
-      throw new Error(`Error fetching active records from ${tableName}: ${error.message}`);
+      throw new Error(
+        `Error fetching active records from ${tableName}: ${error.message}`,
+      );
     }
   },
 
@@ -64,17 +68,19 @@ const baseCollection = {
       const result = await databaseService.query(query);
       return result;
     } catch (error) {
-      throw new Error(`Error fetching inactive records from ${tableName}: ${error.message}`);
+      throw new Error(
+        `Error fetching inactive records from ${tableName}: ${error.message}`,
+      );
     }
   },
 
   async query(query, params) {
-	try {
-	  const result = await databaseService.query(query, params);
-	  return result;
-	} catch (error) {
-	  throw new Error(`Error executing query: ${error.message}`);
-	}
+    try {
+      const result = await databaseService.query(query, params);
+      return result;
+    } catch (error) {
+      throw new Error(`Error executing query: ${error.message}`);
+    }
   },
 };
 

@@ -6,8 +6,13 @@
   "scripts": {
     "clientDev": "cd client && npm run dev",
     "serverDev": "cd server && npm run dev",
-    "buildClient": "cd client && npm run build",
-	"startDev": "npm run buildClient && npm run serverDev",
+    "buildClient": "npm run clean && cd client && npm run buildDev",
+    "buildProd": "npm run clean && cd client && npm run build",
+    "startDev": "npm run buildClient && npm run serverDev",
+    "format": "cd server && npx prettier --write . && cd ../client && npx prettier --write .",
+    "lint": "cd server && npx eslint . --fix && cd ../client && npx eslint . --fix",
+    "clean": "npm run format && npm run lint",
+    "cleanInstall": "rm -rf node_modules && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ILYTAT",

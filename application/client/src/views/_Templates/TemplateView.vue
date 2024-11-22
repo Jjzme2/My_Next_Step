@@ -12,11 +12,11 @@ import BaseView from './BaseView.vue'
 export default {
   //   name: "NewView",
   components: {
-    BaseView
+    BaseView,
   },
   data() {
     return {}
-  }
+  },
 }
 </script>
 

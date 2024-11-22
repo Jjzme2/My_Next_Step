@@ -1,7 +1,7 @@
 const pool = require("../config/db");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const stringUtil = require("../utils/stringUtils.js");
-const BaseModel = require('./BaseModel');
+const BaseModel = require("./BaseModel");
 
 class User extends BaseModel {
   constructor({ id, username, password, email, created_at, role }) {
@@ -24,7 +24,14 @@ class User extends BaseModel {
       VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
-    const values = [this.id, this.username, this.password, this.email, this.created_at, this.role];
+    const values = [
+      this.id,
+      this.username,
+      this.password,
+      this.email,
+      this.created_at,
+      this.role,
+    ];
 
     try {
       const res = await pool.query(query, values);

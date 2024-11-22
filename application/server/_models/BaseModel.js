@@ -17,7 +17,9 @@ class BaseModel {
       const res = await pool.query(query, values);
       return res.rows[0];
     } catch (error) {
-      throw new Error(`Error finding ${this.tableName} by id: ${error.message}`);
+      throw new Error(
+        `Error finding ${this.tableName} by id: ${error.message}`,
+      );
     }
   }
 
@@ -35,7 +37,9 @@ class BaseModel {
   async save() {
     const query = `
       INSERT INTO ${this.constructor.tableName} (${Object.keys(this).join(", ")})
-      VALUES (${Object.values(this).map((_, i) => `$${i + 1}`).join(", ")})
+      VALUES (${Object.values(this)
+        .map((_, i) => `$${i + 1}`)
+        .join(", ")})
       RETURNING *;
     `;
     const values = Object.values(this);
@@ -44,14 +48,18 @@ class BaseModel {
       const res = await pool.query(query, values);
       return res.rows[0];
     } catch (error) {
-      throw new Error(`Error saving ${this.constructor.tableName}: ${error.message}`);
+      throw new Error(
+        `Error saving ${this.constructor.tableName}: ${error.message}`,
+      );
     }
   }
 
   async update() {
     const query = `
       UPDATE ${this.constructor.tableName}
-      SET ${Object.keys(this).map((key, i) => `${key} = $${i + 1}`).join(", ")}
+      SET ${Object.keys(this)
+        .map((key, i) => `${key} = $${i + 1}`)
+        .join(", ")}
       WHERE id = $${Object.keys(this).length + 1}
       RETURNING *;
     `;
@@ -61,7 +69,9 @@ class BaseModel {
       const res = await pool.query(query, values);
       return res.rows[0];
     } catch (error) {
-      throw new Error(`Error updating ${this.constructor.tableName}: ${error.message}`);
+      throw new Error(
+        `Error updating ${this.constructor.tableName}: ${error.message}`,
+      );
     }
   }
 
@@ -73,7 +83,9 @@ class BaseModel {
       const res = await pool.query(query, values);
       return res.rows[0];
     } catch (error) {
-      throw new Error(`Error deleting ${this.constructor.tableName}: ${error.message}`);
+      throw new Error(
+        `Error deleting ${this.constructor.tableName}: ${error.message}`,
+      );
     }
   }
 }
