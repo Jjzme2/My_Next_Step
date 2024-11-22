@@ -1,10 +1,12 @@
 const pool = require("../config/db");
 const bcrypt = require('bcrypt');
 const stringUtil = require("../utils/stringUtils.js");
+const BaseModel = require('./BaseModel');
 
-class User {
+class User extends BaseModel {
   constructor({ id, username, password, email, created_at, role }) {
-    this.id = id?? stringUtil.generateUUID();
+    super();
+    this.id = id ?? stringUtil.generateUUID();
     this.username = username;
     this.password = password;
     this.email = email;
@@ -12,12 +14,12 @@ class User {
     this.role = role || "5a7372b5-5761-409c-91b5-95bce1364839";
   }
 
-  async get() {
-	return this;
+  async getInstance() {
+    return this;
   }
 
   async save() {
-	console.log("Attempting to save user: ", this);
+    console.log("Attempting to save user: ", this);
     const query = `
       INSERT INTO users (id, username, password, email, created_at, role)
       VALUES ($1, $2, $3, $4, $5, $6)
@@ -34,17 +36,16 @@ class User {
   }
 
   static async findByUsername(username) {
-	const query = "SELECT * FROM users WHERE username = $1;";
-	const values = [username];
+    const query = "SELECT * FROM users WHERE username = $1;";
+    const values = [username];
 
-	try {
-	  const res = await pool.query(query, values);
-	  return res.rows[0];
-	}
-	catch (error) {
-	  throw new Error("Error finding user by username: " + error.message);
-	}
-	  }
+    try {
+      const res = await pool.query(query, values);
+      return res.rows[0];
+    } catch (error) {
+      throw new Error("Error finding user by username: " + error.message);
+    }
+  }
 
   static async findByToken(token) {
     const query = `

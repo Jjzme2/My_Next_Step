@@ -1,5 +1,5 @@
 const baseCollection = require("../_services/baseCollection");
-const Model = require("../_models/User");
+const User = require("../_models/User");
 
 const tableName = "users";
 
@@ -8,9 +8,9 @@ const UserCollection = {
     return baseCollection.getAll(tableName);
   },
   async create(data) {
-    const hashedPassword = await Model.hashPassword(data.password);
+    const hashedPassword = await User.hashPassword(data.password);
     const newData = { ...data, password: hashedPassword };
-    return baseCollection.create(tableName, Model, newData);
+    return baseCollection.create(tableName, User, newData);
   },
   async update(id, data) {
     return baseCollection.update(tableName, id, data);
@@ -33,7 +33,7 @@ const UserCollection = {
     return result[0];
   },
   async findByToken(token) {
-    return Model.findByToken(token);
+    return User.findByToken(token);
   },
 };
 

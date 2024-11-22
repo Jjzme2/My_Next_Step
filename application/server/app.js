@@ -3,12 +3,6 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const JWTUtil = require("./utils/JWTUtil");
-const publicRoutes = [
-	"/",
-	"/auth/login",
-	"/auth/register"
-];
-
 
 const app = express();
 
@@ -39,7 +33,7 @@ app.get("/", (req, res) => {
 // Middleware to verify JWT token for protected routes
 app.use((req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  if (!token && !publicRoutes.includes(req.path)) {
+  if (!token && req.route?.meta?.requiresAuth) {
     return res.status(401).json({ error: 'Unauthorized', message: 'Token not found' });
   }
 
@@ -52,9 +46,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware to check for authentication only on routes that are not in the `publicRoutes` array
+// Middleware to check for authentication only on routes that require it
 app.use((req, res, next) => {
-  if (publicRoutes.includes(req.path)) {
+  if (!req.route?.meta?.requiresAuth) {
     return next();
   }
 
