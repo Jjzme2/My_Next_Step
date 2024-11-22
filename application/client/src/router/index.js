@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 
+// Include anything in the  'assets/images' directory as public
+
 const publicRoutes = ['login', 'register'];
 
 const router = createRouter({

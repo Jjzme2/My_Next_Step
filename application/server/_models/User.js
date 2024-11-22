@@ -13,6 +13,7 @@ class User {
   }
 
   async save() {
+	console.log("Attempting to save user: ", this);
     const query = `
       INSERT INTO users (id, username, password, email, created_at, role)
       VALUES ($1, $2, $3, $4, $5, $6)

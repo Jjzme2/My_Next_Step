@@ -18,6 +18,5 @@ router.put('/jwt-tokens/:id', jwtTokenController.updateToken);
 router.delete('/jwt-tokens/:id', jwtTokenController.deleteToken);
 router.get('/jwt-tokens/:id', jwtTokenController.getTokenById);
 
-router.get('/user-info', userController.getUserInfo);
 
 module.exports = router;

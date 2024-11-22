@@ -16,8 +16,8 @@
 
       <!-- Actions slot -->
       <template #actions>
-        <button class="action-button secondary">Sign In</button>
-        <button class="action-button primary">Get Started</button>
+        <button class="action-button secondary" @click="navigateToLogin">Sign In</button>
+        <button class="action-button primary" @click="navigateToRegister">Get Started</button>
       </template>
     </layoutHeader>
 
@@ -33,8 +33,11 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+
 import layoutHeader from '@/components/app/layoutElements/LayoutHeader.vue'
 import layoutFooter from '@/components/app/layoutElements/LayoutFooter.vue'
+
 
 export default {
   name: 'LayoutMain',
@@ -43,6 +46,7 @@ export default {
     layoutFooter
   },
   setup() {
+    const router = useRouter()
     const showHeader = ref(false)
 
     const handleScroll = () => {
@@ -57,8 +61,18 @@ export default {
       window.removeEventListener('scroll', handleScroll)
     })
 
+    function navigateToLogin() {
+      router.push('/login')
+    }
+
+    function navigateToRegister() {
+      router.push('/register')
+    }
+
     return {
-      showHeader
+      showHeader,
+      navigateToLogin,
+      navigateToRegister
     }
   }
 }
