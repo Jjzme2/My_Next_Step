@@ -14,10 +14,14 @@ const JwtTokenService = {
     return baseCollection.update(tableName, id, data);
   },
   async delete(id) {
-    return baseCollection.delete(tableName, id);
+    return this.revoke(id);
   },
   async readById(id) {
     return baseCollection.readById(tableName, id);
+  },
+  async revoke(id) {
+    const data = { revoked: true };
+    return baseCollection.update(tableName, id, data);
   },
 };
 

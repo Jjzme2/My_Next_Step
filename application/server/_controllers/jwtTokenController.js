@@ -29,10 +29,10 @@ exports.updateToken = async (req, res) => {
 
 exports.deleteToken = async (req, res) => {
   try {
-    await jwtTokenService.delete(req.params.id);
+    await jwtTokenService.revoke(req.params.id);
     res.status(204).send();
   } catch (error) {
-    res.status(500).send("Error deleting token");
+    res.status(500).send("Error revoking token");
   }
 };
 
@@ -42,5 +42,14 @@ exports.getTokenById = async (req, res) => {
     res.json(token);
   } catch (error) {
     res.status(500).send("Error fetching token");
+  }
+};
+
+exports.revokeToken = async (req, res) => {
+  try {
+    await jwtTokenService.revoke(req.params.id);
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send("Error revoking token");
   }
 };

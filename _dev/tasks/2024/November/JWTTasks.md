@@ -29,8 +29,9 @@
 - [x] **Task 9:** Implement role-based access control (RBAC).
   - Implement RBAC to restrict access to specific resources based on user roles. This is done in `application/server/routes/devRoutes.js` with the `authenticateAdmin` function.
 
-- [ ] **Task 10:** Implement token revocation.
+- [x] **Task 10:** Implement token revocation.
   - Implement functionality to revoke JWT tokens by maintaining a list of active tokens in the database and invalidating old tokens.
+  - **Update:** Added a new function `revokeToken` to handle token revocation requests and updated the `deleteToken` function to mark tokens as revoked instead of deleting them in `application/server/_controllers/jwtTokenController.js`.
 
 - [ ] **Task 11:** Set up HTTPS for secure data transmission.
   - Ensure that data transmitted between the client and server is encrypted using HTTPS to prevent token exposure to potential attackers.
@@ -40,6 +41,9 @@
 
 - [ ] **Task 13:** Store tokens securely on the client side.
   - Store JWT tokens securely on the client side, preferably in HTTP-only cookies to prevent access by JavaScript and reduce the risk of XSS attacks.
+
+- [ ] **Task 14:** Implement token revocation in the `application/server/_controllers/jwtTokenController.js` file.
+  - Add a new function `revokeToken` to handle token revocation requests and update the `deleteToken` function to mark tokens as revoked instead of deleting them.
 
 ## Security Considerations
 

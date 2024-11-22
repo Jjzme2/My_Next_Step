@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const secretKey = process.env.JWT_SECRET_KEY;
+const jwtTokenService = require("../_services/jwtTokenService");
 
 const generateToken = (payload, expiresIn = "1h") => {
   if (!secretKey) {
@@ -10,9 +11,14 @@ const generateToken = (payload, expiresIn = "1h") => {
   return jwt.sign(payload, secretKey, { expiresIn });
 };
 
-const verifyToken = (token) => {
+const verifyToken = async (token) => {
   try {
-    return jwt.verify(token, secretKey);
+    const decodedToken = jwt.verify(token, secretKey);
+    const isRevoked = await isTokenRevoked(token);
+    if (isRevoked) {
+      return null;
+    }
+    return decodedToken;
   } catch (error) {
     return null;
   }
@@ -34,9 +40,15 @@ const extractUserIdFromToken = (token) => {
   return null;
 };
 
+const isTokenRevoked = async (token) => {
+  const tokenRecord = await jwtTokenService.readById(token);
+  return tokenRecord && tokenRecord.revoked;
+};
+
 module.exports = {
   generateToken,
   verifyToken,
   extractRoleFromToken,
   extractUserIdFromToken,
+  isTokenRevoked,
 };
