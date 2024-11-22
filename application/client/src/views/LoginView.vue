@@ -11,6 +11,10 @@
         <input type="password" id="password" v-model="password" required>
       </div>
       <button type="submit">Login</button>
+
+      <div>
+        <small>Don't have an account? <router-link to="/register">Register</router-link></small>
+      </div>
       <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
     </form>
   </div>
@@ -28,7 +32,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await fetch('/api/login', {
+        const response = await fetch('/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -1,8 +1,9 @@
 const pool = require("../config/db");
+const stringUtil = require("../utils/stringUtils.js");
 
 const Task = {
 	constructor({ id, title, description, created_at }) {
-		this.id = id;
+    this.id = id || stringUtil.generateUUID();
 		this.title = title;
 		this.description = description;
 		this.created_at = created_at || new Date();

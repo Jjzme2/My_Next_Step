@@ -3,8 +3,12 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const JWTUtil = require("./utils/JWTUtil");
-const bcrypt = require('bcrypt');
-const userService = require('./_services/userService');
+const publicRoutes = [
+	"/",
+	"/auth/login",
+	"/auth/register"
+];
+
 
 const app = express();
 
@@ -35,8 +39,8 @@ app.get("/", (req, res) => {
 // Middleware to verify JWT token for protected routes
 app.use((req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (!token && !publicRoutes.includes(req.path)) {
+    return res.status(401).json({ error: 'Unauthorized', message: 'Token not found' });
   }
 
   const verifiedToken = JWTUtil.verifyToken(token);
@@ -49,7 +53,6 @@ app.use((req, res, next) => {
 });
 
 // Middleware to check for authentication only on routes that are not in the `publicRoutes` array
-const publicRoutes = ['/login', '/register'];
 app.use((req, res, next) => {
   if (publicRoutes.includes(req.path)) {
     return next();
@@ -77,24 +80,21 @@ app.use("/devcenter", devRoutes);
 const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
 
+// Auth routes
+const authRoutes = require("./routes/authRoutes.js");
+app.use("/auth", authRoutes);
+
+// Handle unmatched routes for the root
+app.use("*", (req, res) => {
+  res.status(404).send("Route not found.");
+});
+
 // Handle unmatched routes for admin or API (optional)
 app.use("/devcenter/*", (req, res) => {
   res.status(404).send("Admin route not found.");
 });
 app.use("/api/*", (req, res) => {
   res.status(404).json({ error: "API route not found." });
-});
-
-// Route to handle user registration
-app.post("/register", async (req, res) => {
-  try {
-    const { username, password, email } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await userService.create({ username, password: hashedPassword, email });
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 });
 
 // Start the server
