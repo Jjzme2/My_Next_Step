@@ -3,7 +3,7 @@
     <template #default>
       <section class="hero-section">
         <div class="hero-section__content">
-          <h1 class="hero-section__title">Welcome to My Next Step</h1>
+          <h1 class="hero-section__title">Welcome to My Next Step, {{ username }}</h1>
           <p class="hero-section__description">Your journey to achieving your dreams starts here.</p>
           <button class="hero-section__button hero-section__button--primary">Get Started</button>
         </div>
@@ -37,6 +37,7 @@ export default {
   },
   data() {
     return {
+      username: '',
       features: [
         {
           title: 'SMART Goals Framework',
@@ -79,6 +80,24 @@ export default {
           image: 'src/assets/images/svg/resource-storage.svg'
         }
       ]
+    }
+  },
+  async mounted() {
+    try {
+      const response = await fetch('/auth/user-info', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user info');
+      }
+
+      const data = await response.json();
+      this.username = data.username;
+    } catch (error) {
+      console.error(error);
     }
   }
 }
