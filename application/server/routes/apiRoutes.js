@@ -21,4 +21,7 @@ router.get('/jwt-tokens/:id', jwtTokenController.getTokenById);
 
 router.get('/user-info', userController.getUserInfo);
 
+// Route for user registration
+router.post('/register', userController.create);
+
 module.exports = router;

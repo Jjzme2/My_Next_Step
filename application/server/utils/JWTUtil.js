@@ -26,8 +26,17 @@ const extractRoleFromToken = (token) => {
   return null;
 };
 
+const extractUserIdFromToken = (token) => {
+  const decodedToken = verifyToken(token);
+  if (decodedToken) {
+    return decodedToken.id;
+  }
+  return null;
+};
+
 module.exports = {
   generateToken,
   verifyToken,
   extractRoleFromToken,
+  extractUserIdFromToken,
 };
