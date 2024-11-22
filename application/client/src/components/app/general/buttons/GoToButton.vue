@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="destination">
+  <router-link :to="destination" v-if="isAuthenticated">
     <button class="action-button primary">{{ buttonText }}</button>
   </router-link>
 </template>
@@ -15,6 +15,10 @@ export default {
     buttonText: {
       type: String,
       default: 'Go Back'
+    },
+    isAuthenticated: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

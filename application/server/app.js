@@ -3,6 +3,8 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const JWTUtil = require("./utils/JWTUtil");
+const bcrypt = require('bcrypt');
+const userService = require('./_services/userService');
 
 const app = express();
 
@@ -40,6 +42,22 @@ app.use((req, res, next) => {
   const verifiedToken = JWTUtil.verifyToken(token);
   if (!verifiedToken) {
     return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  req.user = verifiedToken;
+  next();
+});
+
+// Middleware to check for authentication on all routes
+app.use((req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.redirect('/login');
+  }
+
+  const verifiedToken = JWTUtil.verifyToken(token);
+  if (!verifiedToken) {
+    return res.redirect('/login');
   }
 
   req.user = verifiedToken;
