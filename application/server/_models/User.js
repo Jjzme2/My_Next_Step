@@ -12,6 +12,10 @@ class User {
     this.role = role || "5a7372b5-5761-409c-91b5-95bce1364839";
   }
 
+  async get() {
+	return this;
+  }
+
   async save() {
 	console.log("Attempting to save user: ", this);
     const query = `
