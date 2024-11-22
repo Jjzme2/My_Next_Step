@@ -39,6 +39,8 @@ export default {
           })
         });
 
+        console.log(response);
+
         if (!response.ok) {
           throw new Error('Invalid login credentials');
         }

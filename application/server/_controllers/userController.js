@@ -22,9 +22,11 @@ const userController = {
     }
   },
   login: async (req, res) => {
+	console.log("Attempting to login with credentials: ", req.body);
     const { username, password } = req.body;
     try {
       const user = await service.findByUsername(username);
+	  console.log("User found: ", user);
       if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
