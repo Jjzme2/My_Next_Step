@@ -14,7 +14,7 @@ const generateToken = (payload, expiresIn = "1h") => {
 const verifyToken = async (token) => {
   try {
     const decodedToken = jwt.verify(token, secretKey);
-    const isRevoked = await isTokenRevoked(token);
+    const isRevoked = await jwtTokenService.isTokenRevoked(token);
     if (isRevoked) {
       return null;
     }

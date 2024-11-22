@@ -57,3 +57,8 @@ To implement secure JWT token handling in Node.js, follow these best practices:
 - Use HTTPS to encrypt data transmitted between the client and server, ensuring that tokens are not exposed to potential attackers during transmission.
 - Regularly rotate secret keys and invalidate old tokens to enhance security.
 - Implement role-based access control (RBAC) to restrict access to specific resources based on user roles, as seen in the `extractRoleFromToken` function in `application/server/utils/JWTUtil.js` and its usage in `application/server/routes/devRoutes.js`.
+
+## Changelog
+
+- **2024-11-01:** Updated `authController.js` to store generated JWT tokens in the database and revoke them upon logout. Updated `authService.js` to handle token storage and revocation. Added new functions in `jwtTokenService.js` to create and revoke tokens. Updated `JWTUtil.js` to check if a token is revoked.
+- **2024-11-02:** Refactored `jwtTokenController.js` to ensure strong SOC and DRY principles. Refactored `userController.js` to ensure strong SOC and DRY principles. Refactored `JwtToken.js` to ensure strong SOC and DRY principles. Refactored `User.js` to ensure strong SOC and DRY principles. Refactored `databaseService.js` to ensure strong SOC and DRY principles. Refactored `apiRoutes.js` to ensure strong SOC and DRY principles. Refactored `authRoutes.js` to ensure strong SOC and DRY principles. Refactored `devRoutes.js` to ensure strong SOC and DRY principles.

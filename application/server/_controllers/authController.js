@@ -1,10 +1,13 @@
 const authService = require('../_services/authService');
+const jwtTokenService = require('../_services/jwtTokenService');
+const JWTUtil = require('../utils/JWTUtil');
 
 const authController = {
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
       const token = await authService.login(username, password);
+      await jwtTokenService.create({ user_id: user.id, token });
       res.status(200).json({ token, username });
     } catch (error) {
       res.status(401).json({ error: error.message });
@@ -14,6 +17,7 @@ const authController = {
     try {
       const { token } = req.body;
       await authService.logout(token);
+      await jwtTokenService.revoke(token);
       res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -35,6 +39,11 @@ const authController = {
     }
 
     try {
+      const verifiedToken = await JWTUtil.verifyToken(token);
+      if (!verifiedToken) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
       const user = await authService.getUserInfo(token);
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
