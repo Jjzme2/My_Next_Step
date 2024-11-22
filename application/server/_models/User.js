@@ -1,4 +1,5 @@
 const pool = require("../config/db");
+const bcrypt = require('bcrypt');
 
 class User {
   constructor({ id, username, password, email, created_at, role }) {
@@ -40,6 +41,14 @@ class User {
     } catch (error) {
       throw new Error("Error finding user by token: " + error.message);
     }
+  }
+
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+
+  async comparePassword(password) {
+    return await bcrypt.compare(password, this.password);
   }
 }
 

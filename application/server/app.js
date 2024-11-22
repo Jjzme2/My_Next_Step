@@ -31,20 +31,20 @@ app.get("/", (req, res) => {
 });
 
 // Middleware to verify JWT token for protected routes
-// app.use((req, res, next) => {
-//   const token = req.headers.authorization?.split(' ')[1];
-//   if (!token) {
-//     return res.status(401).json({ error: 'Unauthorized' });
-//   }
+app.use((req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
 
-//   const verifiedToken = JWTUtil.verifyToken(token);
-//   if (!verifiedToken) {
-//     return res.status(403).json({ error: 'Forbidden' });
-//   }
+  const verifiedToken = JWTUtil.verifyToken(token);
+  if (!verifiedToken) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
 
-//   req.user = verifiedToken;
-//   next();
-// });
+  req.user = verifiedToken;
+  next();
+});
 
 // Admin routes
 const devRoutes = require("./routes/devRoutes");
@@ -60,6 +60,18 @@ app.use("/devcenter/*", (req, res) => {
 });
 app.use("/api/*", (req, res) => {
   res.status(404).json({ error: "API route not found." });
+});
+
+// Route to handle user registration
+app.post("/register", async (req, res) => {
+  try {
+    const { username, password, email } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await userService.create({ username, password: hashedPassword, email });
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Start the server

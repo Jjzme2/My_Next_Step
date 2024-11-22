@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const service = require('../_services/userService');
 const JWTUtil = require('../utils/JWTUtil');
 const jwtTokenService = require('../_services/jwtTokenService');
@@ -13,7 +14,8 @@ const userController = {
   },
   create: async (req, res) => {
     try {
-      const newUser = await service.create(req.body);
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = await service.create({ ...req.body, password: hashedPassword });
       res.status(201).json(newUser);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -23,7 +25,7 @@ const userController = {
     const { username, password } = req.body;
     try {
       const user = await service.findByUsername(username);
-      if (!user || user.password !== password) {
+      if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
       console.log("User found. Generating token...");
@@ -37,15 +39,7 @@ const userController = {
       };
       await jwtTokenService.create(jwtTokenData);
 
-    //   res.status(200).json({ token });
-	res.cookie("token", token, {
-	httpOnly: true,
-	secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-	maxAge: 3600000, // 1 hour
-	});
-	res.redirect("/devcenter/home");
-	// res.setHeader("Authorization", `Bearer ${token}`);
-	// res.redirect('/devcenter/home');
+      res.status(200).json({ token, role: user.role });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

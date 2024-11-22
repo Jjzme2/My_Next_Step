@@ -8,7 +8,9 @@ const UserCollection = {
     return baseCollection.getAll(tableName);
   },
   async create(data) {
-    return baseCollection.create(tableName, Model, data);
+    const hashedPassword = await Model.hashPassword(data.password);
+    const newData = { ...data, password: hashedPassword };
+    return baseCollection.create(tableName, Model, newData);
   },
   async update(id, data) {
     return baseCollection.update(tableName, id, data);
