@@ -102,7 +102,7 @@ export default {
     try {
       const response = await fetch('/auth/user-info', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+          Authorization: `Bearer ${this.$store.state.auth.token}`,
         },
       })
 
@@ -111,7 +111,7 @@ export default {
       }
 
       const data = await response.json()
-      this.username = data.username
+      this.username = this.$store.state.auth.username
     } catch (error) {
       console.error(error)
     }

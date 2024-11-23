@@ -50,7 +50,7 @@ export default {
         }
 
         const data = await response.json()
-        localStorage.setItem('authToken', data.token)
+        this.$store.commit('auth/setToken', data.token)
         this.$router.push('/')
       } catch (error) {
         this.errorMessage = error.message

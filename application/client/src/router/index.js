@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,8 +28,10 @@ const router = createRouter({
   ],
 })
 
+const authStore = useAuthStore()
+
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('authToken')
+  const isAuthenticated = authStore.isAuthenticated
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'login' })
   } else {

@@ -9,9 +9,8 @@ const authController = {
       const { username, password } = req.body;
       const token = await authService.login(username, password);
       const user = await authService.getUserInfo(token);
-      // ! This is important to the issue.
-      //   await jwtTokenService.create({ user_id: user.id, token });
-      res.status(200).json({ token, username });
+      req.session.user = user;
+      res.status(200).json({ token, username, user });
     } catch (error) {
       res.status(401).json({ error: error.message });
     }
