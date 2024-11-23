@@ -24,5 +24,18 @@ const resources = [
     link: "http://localhost:5173/",
   },
 ];
+{
+	title: "User Profile",
+	description: "View and manage your user profile and settings",
+	link: "/profile",
+	requiresAuth: true,
+	getData: (token) => {
+		return fetch('/api/auth/user-info', {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		}).then(res => res.json());
+	}
+},
 
 module.exports = resources;

@@ -34,6 +34,18 @@ const packages = [
     link: "https://expressjs.com/",
   },
   {
+    name: "Express-Session",
+    description: "Session middleware for Express",
+    application_part: "server",
+    link: "https://www.npmjs.com/package/express-session",
+  },
+  {
+    name: "JWT",
+    description: "JSON Web Token library",
+    application_part: "server",
+    link: "https://www.npmjs.com/package/jsonwebtoken",
+  },
+  {
     name: "Body-Parser",
     description: "Middleware for parsing incoming request bodies",
     application_part: "server",
