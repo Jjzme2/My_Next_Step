@@ -15,7 +15,7 @@ const authService = {
 
       if (!(await bcrypt.compare(password, user.password))) {
         logger.warn("Password does not match");
-        console.table({ password, userPassword: user.password });
+        logger.info({ password, userPassword: user.password });
       }
 
       throw new Error("Invalid credentials");
