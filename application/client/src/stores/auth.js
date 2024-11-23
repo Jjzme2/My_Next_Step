@@ -16,18 +16,21 @@ export const useAuthStore = defineStore('auth', {
           body: JSON.stringify({ username, password }),
         })
         if (!response.ok) {
-          throw new Error('Invalid login credentials')
+          const errorData = await response.json()
+          throw new Error(errorData.message || 'Invalid login credentials')
         }
         const data = await response.json()
         this.setUser(data.username)
         this.setToken(data.token)
       } catch (error) {
-        console.error(error)
+        console.error('Login error:', error)
       }
     },
     logout() {
       this.setUser(null)
       this.setToken(null)
+      localStorage.removeItem('username')
+      localStorage.removeItem('authToken')
     },
     async register(username, email, password) {
       try {
@@ -39,30 +42,40 @@ export const useAuthStore = defineStore('auth', {
           body: JSON.stringify({ username, email, password }),
         })
         if (!response.ok) {
-          throw new Error('Registration failed')
+          const errorData = await response.json()
+          throw new Error(errorData.message || 'Registration failed')
         }
         const data = await response.json()
         this.setUser(data.username)
         this.setToken(data.token)
       } catch (error) {
-        console.error(error)
+        console.error('Registration error:', error)
       }
     },
     initialize() {
+      console.log('Initializing auth store')
       const token = localStorage.getItem('authToken')
       const username = localStorage.getItem('username')
       if (token && username) {
-        this.setUser(username)
-        this.setToken(token)
+        this.user = username
+        this.token = token
       }
     },
     setUser(username) {
       this.user = username
-      localStorage.setItem('username', username)
+      if (username) {
+        localStorage.setItem('username', username)
+      } else {
+        localStorage.removeItem('username')
+      }
     },
     setToken(token) {
       this.token = token
-      localStorage.setItem('authToken', token)
+      if (token) {
+        localStorage.setItem('authToken', token)
+      } else {
+        localStorage.removeItem('authToken')
+      }
     },
   },
   getters: {

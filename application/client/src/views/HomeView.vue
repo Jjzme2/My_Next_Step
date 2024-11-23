@@ -36,6 +36,8 @@
 <script>
 import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue'
+
+import { useAuthStore } from '@/stores/auth';
 // import stringUtils from '@/utils/stringUtils';
 
 export default {
@@ -44,76 +46,62 @@ export default {
     BaseView,
     InfoCard,
   },
-  data() {
+  setup() {
+    const { state } = useAuthStore()
+
+    const features = [
+      {
+        title: 'SMART Goals Framework',
+        description:
+          'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.',
+        image: 'src/assets/images/svg/smart-goals.svg',
+      },
+      {
+        title: 'Custom Habit & Task Creation',
+        description:
+          'Define actionable habits and tasks tied to goals without system-generated assumptions.',
+        image: 'src/assets/images/svg/custom-habit.svg',
+      },
+      {
+        title: 'Reflection Support',
+        description:
+          'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.',
+        image: 'src/assets/images/svg/reflection-support.svg',
+      },
+      {
+        title: 'Adaptive Reminders',
+        description:
+          'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.',
+        image: 'src/assets/images/svg/adaptive-reminders.svg',
+      },
+      {
+        title: 'Accountability Options',
+        description:
+          'Optional features to involve friends, accountability partners, or the broader community.',
+        image: 'src/assets/images/svg/accountability-options.svg',
+      },
+      {
+        title: 'Failure-Friendly Support',
+        description:
+          'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.',
+        image: 'src/assets/images/svg/failure-friendly.svg',
+      },
+      {
+        title: 'Data & Insights',
+        description:
+          'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.',
+        image: 'src/assets/images/svg/data-insights.svg',
+      },
+      {
+        title: 'Resource Storage',
+        description: 'Save notes, links, or custom guides relevant to specific goals and habits.',
+        image: 'src/assets/images/svg/resource-storage.svg',
+      },
+    ]
+
     return {
-      username: '',
-      features: [
-        {
-          title: 'SMART Goals Framework',
-          description:
-            'Guided templates for creating Specific, Measurable, Achievable, Relevant, and Time-bound goals.',
-          image: 'src/assets/images/svg/smart-goals.svg',
-        },
-        {
-          title: 'Custom Habit & Task Creation',
-          description:
-            'Define actionable habits and tasks tied to goals without system-generated assumptions.',
-          image: 'src/assets/images/svg/custom-habit.svg',
-        },
-        {
-          title: 'Reflection Support',
-          description:
-            'Integrated journaling and note-taking to encourage reflection on progress, successes, and setbacks.',
-          image: 'src/assets/images/svg/reflection-support.svg',
-        },
-        {
-          title: 'Adaptive Reminders',
-          description:
-            'Starts with subtle nudges and progresses to more direct motivational messages if tasks or habits are skipped.',
-          image: 'src/assets/images/svg/adaptive-reminders.svg',
-        },
-        {
-          title: 'Accountability Options',
-          description:
-            'Optional features to involve friends, accountability partners, or the broader community.',
-          image: 'src/assets/images/svg/accountability-options.svg',
-        },
-        {
-          title: 'Failure-Friendly Support',
-          description:
-            'Encourages users to adjust rather than abandon goals, emphasizing progress over perfection.',
-          image: 'src/assets/images/svg/failure-friendly.svg',
-        },
-        {
-          title: 'Data & Insights',
-          description:
-            'Visualize trends, progress, and habit streaks. Reflect on high and low performance periods with actionable insights.',
-          image: 'src/assets/images/svg/data-insights.svg',
-        },
-        {
-          title: 'Resource Storage',
-          description: 'Save notes, links, or custom guides relevant to specific goals and habits.',
-          image: 'src/assets/images/svg/resource-storage.svg',
-        },
-      ],
-    }
-  },
-  async mounted() {
-    try {
-      const response = await fetch('/auth/user-info', {
-        headers: {
-          Authorization: `Bearer ${this.$store.state.auth.token}`,
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch user info')
-      }
-
-      const data = await response.json()
-      this.username = this.$store.state.auth.username
-    } catch (error) {
-      console.error(error)
+      username: state.username,
+      features,
     }
   },
 }

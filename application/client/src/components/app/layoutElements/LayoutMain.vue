@@ -20,7 +20,7 @@
       <!-- Actions slot -->
       <template #actions>
         <!-- If the user isn't logged in show the Sign in and get started buttons -->
-         <div v-if="!$store.state.auth.isAuthenticated">
+        <div v-if="!$store.state.auth.isAuthenticated">
           <button class="action-button secondary" @click="navigateToLogin">Sign In</button>
           <button class="action-button primary" @click="navigateToRegister">Get Started</button>
         </div>
