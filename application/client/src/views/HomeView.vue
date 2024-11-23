@@ -37,7 +37,7 @@
 import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue'
 
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/stores/auth'
 
 export default {
   name: 'HomeView',

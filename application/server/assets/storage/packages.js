@@ -1,5 +1,5 @@
 const packages = [
-  // Combined
+  // *Combined
   {
     name: "ESLint",
     description: "Linter for JavaScript",
@@ -13,7 +13,7 @@ const packages = [
     link: "https://prettier.io/",
   },
 
-  // Client
+  // *Client
   {
     name: "Vite",
     description: "Frontend build tool",
@@ -26,7 +26,14 @@ const packages = [
     application_part: "client",
     link: "https://vuejs.org/",
   },
-  // Server
+  {
+    name: "JWT-Decode",
+    description: "Library for decoding JWT tokens",
+    application_part: "client",
+    link: "https://www.npmjs.com/package/jwt-decode",
+  },
+
+  // *Server
   {
     name: "Express",
     description: "Web framework for Node.js",

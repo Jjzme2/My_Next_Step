@@ -41,12 +41,12 @@ const authController = {
     }
 
     try {
-      const verifiedToken = await JWTUtil.verifyToken(token);
-      if (!verifiedToken) {
+      const userId = await JWTUtil.extractUserIdFromToken(token);
+      if (!userId) {
         return res.status(401).json({ error: "Unauthorized" });
       }
 
-      const user = await authService.getUserInfo(token);
+      const user = await authService.getUserInfo(userId);
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }

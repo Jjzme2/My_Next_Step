@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import jwt_decode from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -80,10 +79,10 @@ export const useAuthStore = defineStore('auth', {
     },
     isTokenValid(token) {
       try {
-        const decoded = jwt_decode(token)
-        const currentTime = Date.now() / 1000
-        return decoded.exp > currentTime
+        const { exp } = JSON.parse(atob(token.split('.')[1]))
+        return exp * 1000 > Date.now()
       } catch (error) {
+        console.error('Token validation error:', error)
         return false
       }
     },
