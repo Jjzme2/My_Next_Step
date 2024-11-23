@@ -1,4 +1,4 @@
-const jwtTokenService = require("../_services/jwtTokenService");
+const jwtTokenService = require("../services/jwtTokenService");
 
 exports.getAllTokens = async (req, res) => {
   try {

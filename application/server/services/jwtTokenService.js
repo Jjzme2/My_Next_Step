@@ -1,5 +1,5 @@
-const baseCollection = require("../_services/baseCollection");
-const JwtToken = require("../_models/JwtToken");
+const baseCollection = require("../services/baseCollection");
+const JwtToken = require("../models/JwtToken");
 
 const tableName = "jwt_tokens";
 

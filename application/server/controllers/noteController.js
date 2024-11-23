@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const Note = require("../_models/Note");
+const Note = require("../models/Note");
 
 exports.addNote = async (req, res) => {
   const { title, content, tags } = req.body;

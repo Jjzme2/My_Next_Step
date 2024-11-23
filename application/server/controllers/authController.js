@@ -1,5 +1,5 @@
-const authService = require("../_services/authService");
-const jwtTokenService = require("../_services/jwtTokenService");
+const authService = require("../services/authService");
+const jwtTokenService = require("../services/jwtTokenService");
 const JWTUtil = require("../utils/JWTUtil");
 const roleService = require("../services/roleService");
 

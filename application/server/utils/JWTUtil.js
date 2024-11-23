@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const secretKey = process.env.JWT_SECRET_KEY;
-const jwtTokenService = require("../_services/jwtTokenService");
+const jwtTokenService = require("../services/jwtTokenService");
 
 // Generates a JWT token with the given payload and optional expiration time
 const generateToken = (payload, expiresIn = "1h") => {
@@ -17,6 +17,10 @@ const generateToken = (payload, expiresIn = "1h") => {
 // Verifies a JWT token and returns the decoded payload if valid, otherwise null
 const verifyToken = (token) => {
   try {
+    if (!token) {
+      console.error("Token verification failed: Token is null");
+      return null;
+    }
     return jwt.verify(token, secretKey);
   } catch (error) {
     console.error("Token verification failed:", error);

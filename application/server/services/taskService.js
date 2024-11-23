@@ -1,5 +1,5 @@
-const baseCollection = require("../_services/baseCollection");
-const Model = require("../_models/Task");
+const baseCollection = require("../services/baseCollection");
+const Model = require("../models/Task");
 
 const tableName = "tasks";
 

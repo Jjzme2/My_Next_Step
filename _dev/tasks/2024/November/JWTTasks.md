@@ -21,7 +21,7 @@
   - Implement user login to generate and return a JWT token upon successful authentication. This is done in `application/server/_controllers/userController.js` with the `login` function.
 
 - [x] **Task 7:** Store JWT tokens in the database.
-  - Implement functionality to store generated JWT tokens in the database. This is done in `application/server/_models/JwtToken.js` and `application/server/_services/jwtTokenService.js`.
+  - Implement functionality to store generated JWT tokens in the database. This is done in `application/server/models/JwtToken.js` and `application/server/services/jwtTokenService.js`.
 
 - [x] **Task 8:** Implement middleware to verify JWT tokens for protected routes.
   - Implement middleware to verify JWT tokens and restrict access to protected routes. This is done in `application/server/app.js`.
@@ -31,7 +31,7 @@
 
 - [x] **Task 10:** Implement token revocation.
   - Implement functionality to revoke JWT tokens by maintaining a list of active tokens in the database and invalidating old tokens.
-  - **Update:** Added a new function `revokeToken` to handle token revocation requests and updated the `deleteToken` function to mark tokens as revoked instead of deleting them in `application/server/_controllers/jwtTokenController.js`.
+  - **Update:** Added a new function `revokeToken` to handle token revocation requests and updated the `deleteToken` function to mark tokens as revoked instead of deleting them in `application/server/controllers/jwtTokenController.js`.
 
 - [ ] **Task 11:** Set up HTTPS for secure data transmission.
   - Ensure that data transmitted between the client and server is encrypted using HTTPS to prevent token exposure to potential attackers.
@@ -42,7 +42,7 @@
 - [ ] **Task 13:** Store tokens securely on the client side.
   - Store JWT tokens securely on the client side, preferably in HTTP-only cookies to prevent access by JavaScript and reduce the risk of XSS attacks.
 
-- [ ] **Task 14:** Implement token revocation in the `application/server/_controllers/jwtTokenController.js` file.
+- [ ] **Task 14:** Implement token revocation in the `application/server/controllers/jwtTokenController.js` file.
   - Add a new function `revokeToken` to handle token revocation requests and update the `deleteToken` function to mark tokens as revoked instead of deleting them.
 
 ## Security Considerations
@@ -53,7 +53,7 @@ To implement secure JWT token handling in Node.js, follow these best practices:
 - Set an appropriate expiration time for tokens to limit their validity period. This can be done using the `expiresIn` option when generating tokens, as shown in `application/server/utils/JWTUtil.js`.
 - Validate tokens on every request to ensure they are still valid and have not been tampered with. This can be done using the `verifyToken` function in `application/server/utils/JWTUtil.js`.
 - Store tokens securely on the client side, preferably in HTTP-only cookies to prevent access by JavaScript and reduce the risk of XSS attacks.
-- Implement token revocation by maintaining a list of active tokens in the database, as demonstrated in `application/server/_models/JwtToken.js` and `application/server/_services/jwtTokenService.js`.
+- Implement token revocation by maintaining a list of active tokens in the database, as demonstrated in `application/server/models/JwtToken.js` and `application/server/services/jwtTokenService.js`.
 - Use HTTPS to encrypt data transmitted between the client and server, ensuring that tokens are not exposed to potential attackers during transmission.
 - Regularly rotate secret keys and invalidate old tokens to enhance security.
 - Implement role-based access control (RBAC) to restrict access to specific resources based on user roles, as seen in the `extractRoleFromToken` function in `application/server/utils/JWTUtil.js` and its usage in `application/server/routes/devRoutes.js`.
