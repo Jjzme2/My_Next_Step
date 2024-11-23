@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="destination">
+  <router-link :to="destination" v-if="isAuthenticated">
     <button class="action-button primary">{{ buttonText }}</button>
   </router-link>
 </template>
@@ -10,17 +10,21 @@ export default {
   props: {
     destination: {
       type: String,
-      default: '/'
+      default: '/',
     },
     buttonText: {
       type: String,
-      default: 'Go Back'
-    }
+      default: 'Go Back',
+    },
+    isAuthenticated: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     // from() {
     // 	return this.$route.path;
     // },
-  }
+  },
 }
 </script>

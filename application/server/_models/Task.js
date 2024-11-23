@@ -1,17 +1,28 @@
 const pool = require("../config/db");
+const stringUtil = require("../utils/stringUtils.js");
 
 const Task = {
-  getAll: async () => {
-    const res = await pool.query("SELECT * FROM tasks");
-    return res.rows;
+  constructor({ id, title, description, created_at }) {
+    this.id = id || stringUtil.generateUUID();
+    this.title = title;
+    this.description = description;
+    this.created_at = created_at || new Date();
   },
-  create: async (taskData) => {
-    const { title, description } = taskData;
-    const res = await pool.query(
-      "INSERT INTO tasks (title, description) VALUES ($1, $2) RETURNING *",
-      [title, description]
-    );
-    return res.rows[0];
+
+  async save() {
+    const query = `
+			INSERT INTO tasks (id, title, description, created_at)
+			VALUES ($1, $2, $3, $4)
+			RETURNING *;
+		`;
+    const values = [this.id, this.title, this.description, this.created_at];
+
+    try {
+      const res = await pool.query(query, values);
+      return res.rows[0];
+    } catch (error) {
+      throw new Error("Error saving task: " + error.message);
+    }
   },
 };
 

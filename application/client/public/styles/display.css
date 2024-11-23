@@ -23,9 +23,8 @@
   gap: 4rem;
 }
 
-
 .grid-item {
-	  background-color: var(--secondary-green);
+  background-color: var(--secondary-green);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -85,5 +84,5 @@
 }
 
 .centered {
-	margin: 0 auto;
+  margin: 0 auto;
 }

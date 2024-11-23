@@ -5,12 +5,15 @@ const yaml = require("js-yaml"); // We will use a YAML parser to handle the meta
 const applicationDir = path.join(__dirname, "application");
 // const developerDir = path.join(__dirname, "developer");
 
-const applicationFiles = fs.readdirSync(applicationDir).filter((file) => file.endsWith(".md")).sort();
+const applicationFiles = fs
+  .readdirSync(applicationDir)
+  .filter((file) => file.endsWith(".md"))
+  .sort();
 // const developerFiles = fs.readdirSync(developerDir).filter((file) => file.endsWith(".md")).sort();
 
 const noteFiles = [
   ...applicationFiles.map((file) => ({ file, folder: "application" })),
-//   ...developerFiles.map((file) => ({ file, folder: "developer" }))
+  //   ...developerFiles.map((file) => ({ file, folder: "developer" }))
 ];
 
 // Read the contents of each .md file and extract metadata
@@ -44,7 +47,7 @@ module.exports = notes; // Export the notes array
 // Function to add a new note to the collection
 const addNoteToCollection = (note) => {
   const noteDir = path.join(__dirname, note.folder);
-  const noteFileName = `${note.title.replace(/\s+/g, '_').toLowerCase()}.md`;
+  const noteFileName = `${note.title.replace(/\s+/g, "_").toLowerCase()}.md`;
   const noteFilePath = path.join(noteDir, noteFileName);
 
   const noteContent = `---
@@ -64,9 +67,9 @@ ${note.content}`;
       title: note.title,
       date: note.date,
       tags: note.tags,
-      folder: note.folder
+      folder: note.folder,
     },
-    content: note.content
+    content: note.content,
   });
 };
 

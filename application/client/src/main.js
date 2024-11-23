@@ -2,9 +2,11 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-
+import { useAuthStore } from '@/stores/auth' // P6de9
 
 const app = createApp(App)
+
+const authStore = useAuthStore() // P4908
 
 const appName = import.meta.env.VITE_APP_NAME || 'My App'
 
@@ -23,8 +25,7 @@ router.onError((error, to, from) => {
   console.error(errorMessage, error)
 })
 
+authStore.initialize() // P2fec
+
 // Use Pinia, Vue Router, and Highlight.js Vue Plugin
-app
-.use(createPinia())
-.use(router)
-.mount('#app')
+app.use(createPinia()).use(router).mount('#app')

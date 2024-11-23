@@ -31,27 +31,27 @@ export default {
   name: 'BaseView',
   components: {
     mainLayout,
-    goBackButton
+    goBackButton,
     // alertBox
   },
   props: {
     includeHeader: {
       type: Boolean,
-      default: true
+      default: true,
     },
     includeFooter: {
       type: Boolean,
-      default: true
+      default: true,
     },
     includeGoHomeButton: {
       type: Boolean,
-      default: true
+      default: true,
     },
     targetDestination: {
       type: String,
-      default: '/'
-    }
-  }
+      default: '/',
+    },
+  },
 }
 </script>
 
