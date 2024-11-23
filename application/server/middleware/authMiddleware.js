@@ -1,5 +1,3 @@
-// middleware/authMiddleware.js
-
 const JWTUtil = require("../utils/JWTUtil");
 
 const authMiddleware = async (req, res, next) => {

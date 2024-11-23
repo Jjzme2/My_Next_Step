@@ -1,7 +1,7 @@
 const authService = require("../_services/authService");
 const jwtTokenService = require("../_services/jwtTokenService");
 const JWTUtil = require("../utils/JWTUtil");
-// Add Role Service so we can get the role by name instead of ID.
+const roleService = require("../services/roleService");
 
 const authController = {
   login: async (req, res) => {
@@ -9,8 +9,9 @@ const authController = {
       const { username, password } = req.body;
       const token = await authService.login(username, password);
       const user = await authService.getUserInfo(token);
+      const role = await roleService.getRoleByName(user.role);
       req.session.user = user;
-      res.status(200).json({ token, username, user, role: user.role });
+      res.status(200).json({ token, username, user, role: role.name });
     } catch (error) {
       res.status(401).json({ error: error.message });
     }

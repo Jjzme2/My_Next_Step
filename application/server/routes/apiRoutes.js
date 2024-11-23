@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const taskController = require("../_controllers/taskController");
-const noteController = require("../_controllers/noteController");
-const userController = require("../_controllers/userController");
-const jwtTokenController = require("../_controllers/jwtTokenController");
+const taskController = require("../controllers/taskController");
+const noteController = require("../controllers/noteController");
+const userController = require("../controllers/userController");
+const jwtTokenController = require("../controllers/jwtTokenController");
 
 router.get("/tasks", taskController.getAllTasks);
 router.post("/tasks", taskController.createTask);
