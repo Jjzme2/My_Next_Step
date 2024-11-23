@@ -15,7 +15,9 @@ const authController = {
       logger.info(`User ${username} logged in successfully`); // Add logging statement
       res.status(200).json({ token, username, user, role: role.name });
     } catch (error) {
-      logger.error(`Login failed for user ${req.body.username}: ${error.message}`); // Add logging statement
+      logger.error(
+        `Login failed for user ${req.body.username}: ${error.message}`,
+      ); // Add logging statement
       res.status(401).json({ error: error.message });
     }
   },
@@ -38,7 +40,9 @@ const authController = {
       logger.info(`User ${username} registered successfully`); // Add logging statement
       res.status(201).json(newUser);
     } catch (error) {
-      logger.error(`Registration failed for user ${req.body.username}: ${error.message}`); // Add logging statement
+      logger.error(
+        `Registration failed for user ${req.body.username}: ${error.message}`,
+      ); // Add logging statement
       res.status(500).json({ error: error.message });
     }
   },

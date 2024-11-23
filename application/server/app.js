@@ -42,6 +42,7 @@ const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (req.route?.meta?.requiresAuth && !token) {
+    logger.warn("Unauthorized request to ${req.route.path}. Token not found");
     return res
       .status(401)
       .json({ error: "Unauthorized", message: "Token not found" });

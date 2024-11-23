@@ -29,7 +29,9 @@ exports.updateToken = async (req, res) => {
     logger.info(`Updated token with ID ${req.params.id} successfully`); // Add logging statement
     res.json(updatedToken);
   } catch (error) {
-    logger.error(`Error updating token with ID ${req.params.id}: ${error.message}`); // Add logging statement
+    logger.error(
+      `Error updating token with ID ${req.params.id}: ${error.message}`,
+    ); // Add logging statement
     res.status(500).send("Error updating token");
   }
 };
@@ -40,7 +42,9 @@ exports.deleteToken = async (req, res) => {
     logger.info(`Revoked token with ID ${req.params.id} successfully`); // Add logging statement
     res.status(204).send();
   } catch (error) {
-    logger.error(`Error revoking token with ID ${req.params.id}: ${error.message}`); // Add logging statement
+    logger.error(
+      `Error revoking token with ID ${req.params.id}: ${error.message}`,
+    ); // Add logging statement
     res.status(500).send("Error revoking token");
   }
 };
@@ -51,7 +55,9 @@ exports.getTokenById = async (req, res) => {
     logger.info(`Fetched token with ID ${req.params.id} successfully`); // Add logging statement
     res.json(token);
   } catch (error) {
-    logger.error(`Error fetching token with ID ${req.params.id}: ${error.message}`); // Add logging statement
+    logger.error(
+      `Error fetching token with ID ${req.params.id}: ${error.message}`,
+    ); // Add logging statement
     res.status(500).send("Error fetching token");
   }
 };
@@ -62,7 +68,9 @@ exports.revokeToken = async (req, res) => {
     logger.info(`Revoked token with ID ${req.params.id} successfully`); // Add logging statement
     res.status(204).send();
   } catch (error) {
-    logger.error(`Error revoking token with ID ${req.params.id}: ${error.message}`); // Add logging statement
+    logger.error(
+      `Error revoking token with ID ${req.params.id}: ${error.message}`,
+    ); // Add logging statement
     res.status(500).send("Error revoking token");
   }
 };
