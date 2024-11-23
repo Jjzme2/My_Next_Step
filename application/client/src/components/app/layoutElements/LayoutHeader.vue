@@ -20,7 +20,13 @@
       <!-- Actions Section -->
       <div class="header-actions">
         <slot name="actions">
-          <!-- Action items (buttons, user menu, etc.) will be inserted here -->
+          <div v-if="isAuthenticated">
+            <button @click="logout">Logout</button>
+          </div>
+          <div v-else>
+            <button @click="navigateToLogin">Sign In</button>
+            <button @click="navigateToRegister">Get Started</button>
+          </div>
         </slot>
       </div>
     </div>
@@ -28,6 +34,9 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'LayoutHeader',
   props: {
@@ -39,6 +48,30 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  setup() {
+    const authStore = useAuthStore()
+    const router = useRouter()
+
+    function navigateToLogin() {
+      router.push('/login')
+    }
+
+    function navigateToRegister() {
+      router.push('/register')
+    }
+
+    function logout() {
+      authStore.logout()
+      router.push('/login')
+    }
+
+    return {
+      isAuthenticated: authStore.isAuthenticated,
+      navigateToLogin,
+      navigateToRegister,
+      logout,
+    }
   },
   computed: {
     devMode() {

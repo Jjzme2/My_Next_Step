@@ -35,7 +35,7 @@ const authService = {
   },
   getUserInfo: async (token) => {
     const user = await User.findByToken(token);
-    return user;
+    return { id: user.id, username: user.username, role: user.role };
   },
 };
 

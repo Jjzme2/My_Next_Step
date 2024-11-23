@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import jwt_decode from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -56,7 +57,7 @@ export const useAuthStore = defineStore('auth', {
       console.log('Initializing auth store')
       const token = localStorage.getItem('authToken')
       const username = localStorage.getItem('username')
-      if (token && username) {
+      if (token && username && this.isTokenValid(token)) {
         this.user = username
         this.token = token
       }
@@ -75,6 +76,15 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('authToken', token)
       } else {
         localStorage.removeItem('authToken')
+      }
+    },
+    isTokenValid(token) {
+      try {
+        const decoded = jwt_decode(token)
+        const currentTime = Date.now() / 1000
+        return decoded.exp > currentTime
+      } catch (error) {
+        return false
       }
     },
   },

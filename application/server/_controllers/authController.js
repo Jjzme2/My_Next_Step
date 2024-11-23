@@ -10,7 +10,7 @@ const authController = {
       const token = await authService.login(username, password);
       const user = await authService.getUserInfo(token);
       req.session.user = user;
-      res.status(200).json({ token, username, user });
+      res.status(200).json({ token, username, user, role: user.role });
     } catch (error) {
       res.status(401).json({ error: error.message });
     }

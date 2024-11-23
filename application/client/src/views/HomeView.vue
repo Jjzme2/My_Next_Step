@@ -38,7 +38,6 @@ import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue'
 
 import { useAuthStore } from '@/stores/auth';
-// import stringUtils from '@/utils/stringUtils';
 
 export default {
   name: 'HomeView',
@@ -47,7 +46,7 @@ export default {
     InfoCard,
   },
   setup() {
-    const { state } = useAuthStore()
+    const authStore = useAuthStore()
 
     const features = [
       {
@@ -100,7 +99,7 @@ export default {
     ]
 
     return {
-      username: state.username,
+      username: authStore.username,
       features,
     }
   },

@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth'
+
 export default {
   data() {
     return {
@@ -32,25 +34,9 @@ export default {
   },
   methods: {
     async handleRegister() {
+      const authStore = useAuthStore()
       try {
-        const response = await fetch('/auth/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: this.username,
-            email: this.email,
-            password: this.password,
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Registration failed')
-        }
-
-        const data = await response.json()
-        this.$store.commit('auth/setToken', data.token)
+        await authStore.register(this.username, this.email, this.password)
         this.$router.push('/')
       } catch (error) {
         this.errorMessage = error.message

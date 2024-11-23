@@ -20,7 +20,7 @@
       <!-- Actions slot -->
       <template #actions>
         <!-- If the user isn't logged in show the Sign in and get started buttons -->
-        <div v-if="!$store.state.auth.isAuthenticated">
+        <div v-if="!isAuthenticated">
           <button class="action-button secondary" @click="navigateToLogin">Sign In</button>
           <button class="action-button primary" @click="navigateToRegister">Get Started</button>
         </div>
@@ -40,6 +40,7 @@
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 import layoutHeader from '@/components/app/layoutElements/LayoutHeader.vue'
 import layoutFooter from '@/components/app/layoutElements/LayoutFooter.vue'
@@ -54,6 +55,7 @@ export default {
     const router = useRouter()
     const showHeader = ref(false)
     const env = import.meta.env.MODE
+    const authStore = useAuthStore()
 
     const handleScroll = () => {
       showHeader.value = window.scrollY > 100
@@ -80,6 +82,7 @@ export default {
       showHeader,
       navigateToLogin,
       navigateToRegister,
+      isAuthenticated: authStore.isAuthenticated,
     }
   },
 }

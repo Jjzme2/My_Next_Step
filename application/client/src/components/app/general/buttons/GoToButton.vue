@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth'
+
 export default {
   name: 'GoToButton',
   props: {
@@ -16,15 +18,12 @@ export default {
       type: String,
       default: 'Go Back',
     },
-    isAuthenticated: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
-    // from() {
-    // 	return this.$route.path;
-    // },
+    isAuthenticated() {
+      const authStore = useAuthStore()
+      return authStore.isAuthenticated
+    },
   },
 }
 </script>

@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth'
+
 export default {
   data() {
     return {
@@ -31,25 +33,9 @@ export default {
   },
   methods: {
     async handleLogin() {
+      const authStore = useAuthStore()
       try {
-        const response = await fetch('/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password,
-          }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Invalid login credentials')
-        }
-
-        const data = await response.json()
-        this.$store.commit('auth/setToken', data.token)
-        this.$store.commit('auth/setUser', data.username)
+        await authStore.login(this.username, this.password)
         this.$router.push('/')
       } catch (error) {
         this.errorMessage = error.message
