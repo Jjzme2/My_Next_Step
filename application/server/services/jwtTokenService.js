@@ -1,6 +1,7 @@
 const baseCollection = require("../services/baseCollection");
 const JwtToken = require("../models/JwtToken");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const tableName = "jwt_tokens";
 

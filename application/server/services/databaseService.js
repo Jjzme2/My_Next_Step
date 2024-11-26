@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const database = {
   async connect() {

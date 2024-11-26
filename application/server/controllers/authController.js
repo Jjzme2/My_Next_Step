@@ -3,6 +3,7 @@ const jwtTokenService = require("../services/jwtTokenService");
 const JWTUtil = require("../utils/JWTUtil");
 const roleService = require("../services/roleService");
 const logger = require("../utils/logger"); // Import the logger module
+const authMiddleware = require("../middleware/authMiddleware"); // Import the authMiddleware module
 
 const authController = {
   login: async (req, res) => {

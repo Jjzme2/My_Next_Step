@@ -1,6 +1,7 @@
 const baseCollection = require("../services/baseCollection");
 const User = require("../models/User");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const tableName = "users";
 
