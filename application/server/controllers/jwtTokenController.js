@@ -1,5 +1,6 @@
 const jwtTokenService = require("../services/jwtTokenService");
 const logger = require("../utils/logger"); // Import the logger module
+const authMiddleware = require("../middleware/authMiddleware"); // Import the authMiddleware module
 
 exports.getAllTokens = async (req, res) => {
   try {

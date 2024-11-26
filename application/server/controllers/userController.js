@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const service = require("../services/userService");
 const JWTUtil = require("../utils/JWTUtil");
 const jwtTokenService = require("../services/jwtTokenService");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const userController = {
   getAll: async (req, res) => {

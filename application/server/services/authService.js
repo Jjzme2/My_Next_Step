@@ -4,6 +4,7 @@ const User = require("../models/User");
 const JWTUtil = require("../utils/JWTUtil");
 const jwtTokenService = require("../services/jwtTokenService");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const authService = {
   login: async (username, password) => {

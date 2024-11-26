@@ -1,5 +1,6 @@
 const roleService = require("../services/roleService");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const roleController = {
   getAllRoles: async (req, res) => {

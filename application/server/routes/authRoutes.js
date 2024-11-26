@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.get("/", (req, res) => {
   res.render("pages/login", {
@@ -10,6 +11,6 @@ router.get("/", (req, res) => {
 router.post("/login", authController.login);
 router.post("/logout", authController.logout);
 router.post("/register", authController.register);
-router.get("/user-info", authController.getUserInfo);
+router.get("/user-info", authMiddleware, authController.getUserInfo);
 
 module.exports = router;

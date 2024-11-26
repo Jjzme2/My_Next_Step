@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const JWTUtil = require("./utils/JWTUtil");
 const session = require("express-session");
 const logger = require("./utils/logger"); // Import the logger module
+const authMiddleware = require("./middleware/authMiddleware"); // Import the authMiddleware module
 
 const app = express();
 
@@ -37,29 +38,6 @@ app.use(
     },
   }),
 );
-
-const authMiddleware = async (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-
-  if (req.route?.meta?.requiresAuth && !token) {
-    logger.warn("Unauthorized request to ${req.route.path}. Token not found");
-    return res
-      .status(401)
-      .json({ error: "Unauthorized", message: "Token not found" });
-  }
-
-  if (token) {
-    const verifiedToken = await JWTUtil.verifyTokenWithRevocationCheck(token);
-    if (!verifiedToken) {
-      return res
-        .status(403)
-        .json({ error: "Forbidden", message: "Invalid or expired token" });
-    }
-    req.user = verifiedToken;
-  }
-
-  next();
-};
 
 app.use(authMiddleware);
 
