@@ -1,7 +1,7 @@
 <template>
   <div class="register-container">
     <h2>Register</h2>
-    <form @submit.prevent="handleRegister">
+    <form @submit.prevent>
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" v-model="username" required />
@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import { useAuthStore } from '@/stores/auth'
-
 export default {
   data() {
     return {
@@ -31,17 +29,6 @@ export default {
       password: '',
       errorMessage: '',
     }
-  },
-  methods: {
-    async handleRegister() {
-      const authStore = useAuthStore()
-      try {
-        await authStore.register(this.username, this.email, this.password)
-        this.$router.push('/')
-      } catch (error) {
-        this.errorMessage = error.message
-      }
-    },
   },
 }
 </script>

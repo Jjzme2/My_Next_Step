@@ -2,10 +2,7 @@ const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
-const JWTUtil = require("./utils/JWTUtil");
-const session = require("express-session");
 const logger = require("./utils/logger"); // Import the logger module
-const authMiddleware = require("./middleware/authMiddleware"); // Import the authMiddleware module
 
 const app = express();
 
@@ -27,25 +24,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-app.use(
-  session({
-    secret: process.env.JWT_SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  }),
-);
-
-app.use(authMiddleware);
-
 const devRoutes = require("./routes/devRoutes");
-app.use("/devcenter", authMiddleware, devRoutes);
+app.use("/devcenter", devRoutes);
 
 const apiRoutes = require("./routes/apiRoutes");
-app.use("/api", authMiddleware, apiRoutes);
+app.use("/api", apiRoutes);
 
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
