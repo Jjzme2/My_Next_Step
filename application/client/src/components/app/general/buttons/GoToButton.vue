@@ -1,12 +1,10 @@
 <template>
-  <router-link :to="destination" v-if="isAuthenticated">
+  <router-link :to="destination">
     <button class="action-button primary">{{ buttonText }}</button>
   </router-link>
 </template>
 
 <script>
-import { useAuthStore } from '@/stores/auth'
-
 export default {
   name: 'GoToButton',
   props: {
@@ -17,12 +15,6 @@ export default {
     buttonText: {
       type: String,
       default: 'Go Back',
-    },
-  },
-  computed: {
-    isAuthenticated() {
-      const authStore = useAuthStore()
-      return authStore.isAuthenticated
     },
   },
 }

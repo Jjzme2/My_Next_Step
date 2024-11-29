@@ -1,6 +1,7 @@
 const baseCollection = require("./baseCollection");
 const Role = require("../models/Role");
 const logger = require("../utils/logger");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const RoleService = {
   async getAll() {

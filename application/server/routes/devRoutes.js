@@ -3,32 +3,11 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const JWTUtil = require("../utils/JWTUtil");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const NoteCollection = require("../assets/notes/index.js");
 const { renderMarkdown } = require("../utils/markdownRenderer.js");
 // const userController = require( "../_controllers/userController.js" );
-
-const authenticateAdmin = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) {
-    return res
-      .status(401)
-      .json({ error: "Unauthorized", message: "Token not found" });
-  }
-
-  const role = JWTUtil.extractRoleFromToken(token);
-  if (role !== "admin") {
-    return res.status(403).json({ error: "Forbidden" });
-  }
-  const decodedToken = JWTUtil.verifyToken(token);
-  if (!decodedToken) {
-    return res
-      .status(401)
-      .json({ error: "Unauthorized", message: "Invalid token" });
-  }
-
-  next();
-};
 
 router.get("/", (req, res) => {
   res.render("pages/login", {
@@ -47,20 +26,20 @@ router.get("/home", (req, res) => {
 
 // * Notes
 
-router.get("/notes", authenticateAdmin, (req, res) => {
+router.get("/notes", authMiddleware, (req, res) => {
   res.render("notes/list", {
     title: "Notes Page", // Dynamic title for the page
     notes: NoteCollection,
   });
 });
 
-router.get("/notes/create", authenticateAdmin, (req, res) => {
+router.get("/notes/create", authMiddleware, (req, res) => {
   res.render("notes/create", {
     title: "Create a New Note",
   });
 });
 
-router.get("/notes/:id", authenticateAdmin, (req, res) => {
+router.get("/notes/:id", authMiddleware, (req, res) => {
   const note = NoteCollection.find(
     (note) => note.metadata.id === req.params.id,
   );
@@ -81,7 +60,7 @@ router.get("/notes/:id", authenticateAdmin, (req, res) => {
   });
 });
 
-router.post("/notes/new", authenticateAdmin, (req, res) => {
+router.post("/notes/new", authMiddleware, (req, res) => {
   const { title, content, tags } = req.body;
 
   if (!title || !content) {
@@ -110,7 +89,7 @@ ${content}`;
 
 // * Resources
 
-router.get("/resources", authenticateAdmin, (req, res) => {
+router.get("/resources", authMiddleware, (req, res) => {
   const resources = require("../assets/storage/resources.js");
   const packages = require("../assets/storage/packages.js");
 

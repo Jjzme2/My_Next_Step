@@ -20,10 +20,7 @@
       <!-- Actions Section -->
       <div class="header-actions">
         <slot name="actions">
-          <div v-if="isAuthenticated">
-            <button @click="logout">Logout</button>
-          </div>
-          <div v-else>
+          <div>
             <button @click="navigateToLogin">Sign In</button>
             <button @click="navigateToRegister">Get Started</button>
           </div>
@@ -34,7 +31,6 @@
 </template>
 
 <script>
-import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -50,7 +46,6 @@ export default {
     },
   },
   setup() {
-    const authStore = useAuthStore()
     const router = useRouter()
 
     function navigateToLogin() {
@@ -61,16 +56,9 @@ export default {
       router.push('/register')
     }
 
-    function logout() {
-      authStore.logout()
-      router.push('/login')
-    }
-
     return {
-      isAuthenticated: authStore.isAuthenticated,
       navigateToLogin,
       navigateToRegister,
-      logout,
     }
   },
   computed: {

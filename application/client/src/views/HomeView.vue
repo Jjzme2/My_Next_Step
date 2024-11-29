@@ -3,7 +3,7 @@
     <template #default>
       <section class="hero-section">
         <div class="hero-section__content">
-          <h1 class="hero-section__title">Welcome to My Next Step, {{ username }}</h1>
+          <h1 class="hero-section__title">Welcome to My Next Step</h1>
           <p class="hero-section__description">
             Your journey to achieving your dreams starts here.
           </p>
@@ -37,8 +37,6 @@
 import BaseView from './BaseView.vue'
 import InfoCard from '@/components/app/general/cards/InfoCard.vue'
 
-import { useAuthStore } from '@/stores/auth'
-
 export default {
   name: 'HomeView',
   components: {
@@ -46,8 +44,6 @@ export default {
     InfoCard,
   },
   setup() {
-    const authStore = useAuthStore()
-
     const features = [
       {
         title: 'SMART Goals Framework',
@@ -99,7 +95,6 @@ export default {
     ]
 
     return {
-      username: authStore.username,
       features,
     }
   },

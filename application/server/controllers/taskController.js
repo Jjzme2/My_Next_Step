@@ -1,4 +1,5 @@
 const Task = require("../models/Task");
+const authMiddleware = require("../middleware/authMiddleware");
 
 exports.getAllTasks = async (req, res) => {
   try {
